@@ -1,7 +1,5 @@
 {
-  "allow": true,
-  "emergency": false,
-  "message": "",
-  "expiresUtc": "2026-12-31T00:00:00Z",
-  "signature": "BASE64_SIGNATURE_OF_CANONICAL_JSON"
+  "gate": "OK",
+  "kill": false,
+  "message": "online"
 }
