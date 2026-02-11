@@ -1,5 +1,7 @@
 {
-  "gate": "OK",
-  "kill": false,
-  "message": "online"
+  "allow": true,
+  "emergency": false,
+  "message": "OK",
+  "ts": "2026-02-11T00:00:00Z",
+  "signature": "BASE64..."
 }
