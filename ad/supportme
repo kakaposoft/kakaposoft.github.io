@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Kakapo Support</title>
+</head>
+<body style="font-family:sans-serif;background:#0f1420;color:white">
+
+<h1>Kakapo Vision Player 支援</h1>
+
+<p>このソフトは個人開発です。</p>
+<p>支援していただけると開発継続できます。</p>
+
+<h2>支援方法</h2>
+
+<p>
+<a href="https://buymeacoffee.com/あなた">Buy Me a Coffee</a>
+</p>
+
+<p>
+<a href="https://www.paypal.com/paypalme/あなた">PayPal</a>
+</p>
+
+<hr>
+
+<h2>支援コード</h2>
+<p>支援後、以下のコードをソフトに入力してください。</p>
+
+<pre>
+KAKAPO-2026-SUPPORT
+</pre>
+
+</body>
+</html>
