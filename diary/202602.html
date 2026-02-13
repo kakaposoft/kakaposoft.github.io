@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>開発動機とセールスポイント | KakapoSoft</title>
+
+  <style>
+    :root{
+      --bg:#f6f7f7;
+      --card:#ffffff;
+      --text:#1d2320;
+      --muted:#5e6a64;
+      --accent:#0b5d2a;
+      --line:#e7ece9;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:16px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: Segoe UI, Meiryo, sans-serif;
+      line-height:1.9;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 18px auto;
+      padding: 0 14px 30px;
+    }
+
+    header{
+      background: linear-gradient(180deg, rgba(11,93,42,.10), rgba(11,93,42,0));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 22px 20px;
+      text-align: center;
+      overflow:hidden;
+    }
+
+    .brand{
+      font-size: 44px;
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: .5px;
+    }
+    .brand .kakapo{
+      color: var(--accent);
+      font-weight: 900;
+    }
+    .subtitle{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.04);
+      overflow:hidden;
+    }
+
+    .content{
+      padding: 18px 20px 6px;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 14px 20px 0;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,93,42,.25);
+      background: rgba(11,93,42,.06);
+      color: #20412f;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    h1{
+      font-size: 22px;
+      margin: 10px 0 6px;
+      line-height: 1.35;
+    }
+
+    h2{
+      font-size: 18px;
+      margin: 26px 0 10px;
+      padding-left: 12px;
+      border-left: 4px solid rgba(11,93,42,.55);
+    }
+
+    p{ margin: 12px 0; }
+
+    ul{
+      margin: 10px 0 12px 1.2em;
+      padding: 0;
+    }
+    li{ margin: 6px 0; }
+
+    .quote{
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-left: 4px solid rgba(11,93,42,.45);
+      background: #f3faf6;
+      color: #1f3a2a;
+      border-radius: 12px;
+    }
+
+    .note{
+      margin: 14px 0 20px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      background: #fbfcfb;
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cta{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 6px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .btn{
+      display:inline-block;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration:none;
+      font-weight: 700;
+      border: 1px solid rgba(11,93,42,.30);
+      background: rgba(11,93,42,.08);
+      color: #12311f;
+      transition: .15s;
+    }
+    .btn:hover{
+      background: rgba(11,93,42,.12);
+      transform: translateY(-1px);
+    }
+
+    aside{
+      padding: 16px 16px 10px;
+    }
+
+    .side-title{
+      font-weight: 800;
+      color:#2a3a31;
+      margin: 6px 0 10px;
+      font-size: 14px;
+    }
+
+    .side-link{
+      display:block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-decoration:none;
+      color:#102018;
+      background: rgba(11,93,42,.06);
+      border: 1px solid transparent;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+    .side-link:hover{
+      background: rgba(11,93,42,.10);
+      border-color: rgba(11,93,42,.22);
+    }
+
+    footer{
+      text-align:center;
+      color:#666;
+      font-size: 12px;
+      padding: 18px 0 4px;
+    }
+    .footlinks a{
+      color:#094a94;
+      text-decoration:none;
+      margin: 0 6px;
+    }
+    .footlinks a:hover{ text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <h1 class="brand"><span class="kakapo">Kakapo</span>Soft</h1>
+      <div class="subtitle">開発動機とセールスポイント（ブログ）</div>
+    </header>
+
+    <div class="grid">
+
+      <!-- 本文 -->
+      <article class="card">
+        <div class="meta">
+          <span class="pill">開発ストーリー</span>
+          <span class="pill">安心・ローカルAI</span>
+          <span class="pill">Kakapo Vision Viewer</span>
+          <span style="margin-left:auto; color:var(--muted);">最終更新：2026/02/12</span>
+        </div>
+
+        <div class="content">
+          <h1>「安心して使える動画プレイヤー」を作りたかった</h1>
+
+          <p>
+            Kakapo Vision Viewer は、個人開発の軽量・高機能な動画プレイヤーです。
+            そして、僕が一番大事にしているのは「安心して使えること」でした。
+          </p>
+
+          <div class="quote">
+            有名ソフトは海外製が多く、便利な反面、裏で何が動いているか分かりにくい。<br>
+            機密データや個人的な素材を扱うときほど、その不安は大きくなる。
+          </div>
+
+          <h2>日本製ソフトで安心</h2>
+          <p>
+            高機能なソフトウェアは海外製が主流です。
+            もちろん優れた製品も多い一方で、「通信・収集・挙動が見えにくい」と感じることもあります。
+          </p>
+          <p>
+            特に、仕事の資料、未公開素材、家族の動画など、
+            <strong>外に出てはいけないデータ</strong>を扱う場合、気持ちよく使えない瞬間があります。
+          </p>
+
+          <p>
+            Kakapo Vision Viewer は、余計なものを積まず、
+            <strong>必要な機能に集中した設計</strong>をベースにしています。
+            「何をしているソフトか分かる」という安心感を、使い心地と同じくらい大切にしています。
+          </p>
+
+          <h2>ローカル処理によるAIで安心</h2>
+          <p>
+            AIによる高画質化や補正サービスはオンラインにもたくさんあります。
+            ただ、オンライン型は多くの場合、素材を一度アップロードする必要があります。
+          </p>
+
+          <ul>
+            <li>社外秘や未公開データを送るのは怖い</li>
+            <li>保存期間や利用範囲が分かりにくい</li>
+            <li>将来的に学習素材に使われるかもしれない</li>
+          </ul>
+
+          <p>
+            そこで Kakapo Vision Viewer では、可能な限り
+            <strong>AI処理をローカル環境で完結</strong>させる方針にしています。
+          </p>
+
+          <div class="note">
+            ※AI処理は「自分が正当な権利を持つコンテンツ」での利用を前提としています。<br>
+            他者の著作物や権利物の無断編集・改変を推奨するものではありません。
+          </div>
+
+          <h2>軽量・高速・実用重視</h2>
+          <p>
+            見た目よりも「日常で使えること」を優先しました。
+            速く、軽く、ストレスが少ないこと。ここはずっと譲れないポイントです。
+          </p>
+          <ul>
+            <li>GPUを活用した高速再生・処理</li>
+            <li>不要な常駐機能を増やさない</li>
+            <li>大容量動画・高解像度素材を想定</li>
+            <li>制作ワークフローの補助（素材チェック・品質確認）</li>
+          </ul>
+
+          <h2>クリエイターのためのツール</h2>
+          <p>
+            このソフトは、動画編集前の確認、素材のチェック、AIによる品質確認など、
+            「制作の前後で役に立つ」ことを目指しています。
+          </p>
+          <p>
+            オンラインサービスに頼らず、自分の環境で、安全に、確実に処理できる。
+            その安心感が、制作の集中力を守ると思っています。
+          </p>
+<!-- ===== 続き：セールスポイント ===== -->
+
+<h2>セールスポイント</h2>
+
+<h3>可愛い × テクノロジー</h3>
+<p>
+Kakapo Vision Viewer のUIは、「可愛いけど邪魔にならない」を狙って設計しています。<br>
+派手すぎず、でも無機質すぎない。日常に溶け込む“ちょうどよさ”を大事にしました。
+</p>
+
+<p>
+老若男女、どんなシーンでも違和感なく使えるように調整しています。
+たとえば――
+</p>
+<ul>
+  <li><strong>子どもの教育環境</strong>：余計な刺激を抑え、迷いにくい導線</li>
+  <li><strong>ビジネスシーン</strong>：見た目が浮かない落ち着いたトーン</li>
+  <li><strong>くつろぎの休日</strong>：操作のストレスを減らし、視聴に集中できる</li>
+</ul>
+
+<p>
+また、広告を表示する場合でも、表示内容がTPOから外れないよう配慮します。<br>
+「使っていて不快にならない」「見せたくない人の前でも安心」を基本にしています。
+</p>
+
+<div class="note">
+  <strong>補足：</strong><br>
+  将来的に、広告を“強め”にする代わりに機能を拡充する<strong>追加モード</strong>を用意する構想があります。<br>
+  ただし、子どもが誤って有効化しないように、簡単なクイズ等を解いた場合のみ解除できる方式など、
+  運用面も含めて慎重に検討します。
+</div>
+
+<h3>キーボードを使わない操作性</h3>
+<p>
+動画プレイヤーは、見たい瞬間にサッと触れて、サッと戻れるのが理想だと思っています。<br>
+Kakapo Vision Viewer は、できる限り<strong>マウスだけで完結</strong>する操作性を重視しています。
+</p>
+
+<ul>
+  <li><strong>直感的なクリック操作</strong>で再生・停止・シークができる</li>
+  <li>細かな設定も、画面上で迷いにくい導線にまとめる</li>
+  <li>キーボードショートカットに頼らず、初見でも触れる</li>
+</ul>
+
+<p>
+もちろん、慣れてきた人向けにショートカットを用意する余地はありますが、<br>
+まずは「誰でも、すぐ使える」を最優先にしています。
+</p>
+
+<!-- ===== 続きはここに足していける ===== -->
+<!-- 例：AI高画質のこだわり、軽量性、ローカル処理、プレイリスト、広告の設計思想など -->
+
+
+
+          <h2>これから</h2>
+          <p>
+            Kakapo Vision Viewer は個人開発として、少しずつ改良を続けています。
+            「安心・軽量・実用性」を軸に、長く使えるツールを目指します。
+          </p>
+
+
+
+          <div class="cta">
+            <a class="btn" href="https://github.com/kakaposoft/kakaposoft.github.io/releases/download/kakapovisionplayer/Kakapo.Vision.Player.exe">最新版をダウンロード</a>
+            <a class="btn" href="./ad/">推奨環境・おすすめを見る</a>
+            <a class="btn" href="./privacy.html">プライバシーポリシー</a>
+          </div>
+
+          <p class="note">
+            広告リンクの利用や支援は、開発継続の大きな励みになります。
+          </p>
+        </div>
+      </article>
+
+      <!-- サイドバー -->
+      <aside class="card">
+        <div class="side-title">サイトメニュー</div>
+        <a class="side-link" href="/index.html">トップ</a>
+        <a class="side-link" href="/ad/ad.html">ダウンロード</a>
+        <a class="side-link" href="/ad/ad.html">推奨環境・おすすめ</a>
+    
+        <a class="side-link" href="/ad/privacy.html">プライバシーポリシー</a>
+        <a class="side-link" href="/ad/terms.html">利用規約</a>
+        <a class="side-link" href="/ad/contact.html">お問い合わせ</a>
+
+        <div class="side-title" style="margin-top:16px;">ひとこと</div>
+        <p style="margin:0; color:var(--muted); font-size:13px;">
+          「安心して使える」を最優先にしています。<br>
+          不要な通信をしない、ローカル処理、実用性。<br>
+          そこに全振りしたプレイヤーです。
+        </p>
+      </aside>
+
+    </div>
+
+    <footer>
+      <div class="footlinks">
+        <a href="/ad/privacy.html">プライバシーポリシー</a> |
+        <a href="/ad/terms.html">利用規約</a> |
+        <a href="/ad/contact.html">お問い合わせ</a>
+      </div>
+      <div style="margin-top:8px;"><a href="/index.html">© KakapoSoft</div>
+    </footer>
+
+  </div>
+</body>
+</html>
