@@ -6,123 +6,280 @@
 <title>KakapoSoft</title>
 
 <style>
+:root{
+  --bg:#14161a;
+  --panel:#1e2126;
+  --panel2:#2a2d33;
+  --text:#ddd;
+  --muted:#9aa0a6;
+  --accent:#3a7cff;
+  --accentHover:#2f66d8;
+  --shadow:0 0 10px rgba(0,0,0,0.3);
+  --radius:10px;
+}
+
 body{
-    background:#14161a;
-    color:#ddd;
-    font-family:Segoe UI,Meiryo,sans-serif;
-    text-align:center;
-    margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Segoe UI,Meiryo,sans-serif;
+  margin:0;
 }
 
 .container{
-    max-width:720px;
-    margin:auto;
-    padding:20px;
+  max-width:820px;
+  margin:auto;
+  padding:22px 16px 30px;
+}
+
+header{
+  text-align:center;
+  margin-bottom:16px;
 }
 
 h1{
-    color:#ffffff;
-    margin-bottom:5px;
+  color:#fff;
+  margin:10px 0 6px;
+  letter-spacing:.5px;
 }
 
 .subtitle{
-    color:#9aa0a6;
-    margin-bottom:20px;
+  color:var(--muted);
+  margin:0 0 6px;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:8px;
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(58,124,255,0.15);
+  border:1px solid rgba(58,124,255,0.35);
+  color:#bcd3ff;
 }
 
 .box{
-    background:#1e2126;
-    margin:18px 0;
-    padding:18px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.3);
+  background:var(--panel);
+  margin:14px 0;
+  padding:18px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+.box h2{
+  margin:0 0 10px;
+  font-size:18px;
+  color:#fff;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:12px;
+  margin:0 0 10px;
+}
+
+.blog p{
+  text-align:left;
+  line-height:1.9;
+  margin:10px 0;
+  color:var(--text);
+}
+
+.blog .quote{
+  border-left:3px solid rgba(58,124,255,0.55);
+  padding-left:12px;
+  color:#cfd3d9;
+  margin:12px 0;
+}
+
+hr.soft{
+  border:0;
+  border-top:1px solid rgba(255,255,255,0.08);
+  margin:14px 0;
 }
 
 .button{
-    display:inline-block;
-    padding:12px 24px;
-    background:#3a7cff;
-    color:#fff;
-    text-decoration:none;
-    border-radius:8px;
-    font-size:16px;
-    transition:0.2s;
+  display:inline-block;
+  padding:12px 22px;
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  font-size:16px;
+  transition:0.2s;
 }
 
-.button:hover{
-    background:#2f66d8;
+.button:hover{ background:var(--accentHover); }
+
+.links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:10px;
 }
 
 .link{
-    display:block;
-    padding:10px;
-    margin:6px 0;
-    background:#2a2d33;
-    border-radius:6px;
-    text-decoration:none;
-    color:#ddd;
-    transition:0.2s;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px;
+  background:var(--panel2);
+  border-radius:10px;
+  text-decoration:none;
+  color:var(--text);
+  transition:0.2s;
+  border:1px solid rgba(255,255,255,0.06);
 }
 
-.link:hover{
-    background:#3a3f46;
+.link:hover{ background:#3a3f46; }
+
+.link .title{
+  font-weight:700;
+  margin:0;
+}
+
+.link .desc{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+  line-height:1.6;
+}
+
+.kv{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+  text-align:left;
+}
+
+.kv .row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:10px;
+  padding:10px 12px;
+}
+
+.kv .key{
+  width:120px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.kv .val{
+  color:var(--text);
+  font-size:13px;
 }
 
 .footer{
-    margin-top:30px;
-    font-size:12px;
-    color:#777;
+  margin:22px 0 10px;
+  font-size:12px;
+  color:#777;
+  text-align:center;
+}
+
+.smallnote{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+@media (max-width: 768px){
+  .container{ padding:18px 12px 24px; }
+  .kv .key{ width:92px; }
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<h1>KakapoSoft</h1>
-<div class="subtitle">軽量・高機能な動画プレイヤー</div>
+<header>
+  <h1>KakapoSoft</h1>
+  <div class="subtitle">軽量・高機能な動画プレイヤー（ローカル処理重視）</div>
+  <span class="badge">Kakapo Vision Player</span>
+</header>
 
-<!-- ダウンロード -->
+
+<div class="box blog">
+  <h2>作者コメント</h2>
+  <p class="meta">更新：2026/02</p>
+
+  <p>
+    Kakapo Vision Player は、個人開発で作っている <b>軽量・高速</b> な動画／画像ビューアです。
+    「日常で気軽に使える操作感」と「ローカルで完結する安心感」を両立することを目標にしています。
+  </p>
+
+  <p class="quote">
+    海外製ソフトは便利だけど、環境によっては「裏で何をしているか分からない」不安が残る。
+    だったら、自分で“見える範囲”のツールを作ろう——そんな気持ちから始まりました。
+  </p>
+
+  <p>
+    まだ1.0なので、細かい改善はこれからですが、まずは “普通に使える・軽い・迷わない” を優先して整えています。
+    もし合いそうなら、ぜひ触ってみてください。
+  </p>
+
+  <hr class="soft">
+
+  <div class="kv">
+    <div class="row">
+      <div class="key">特徴</div>
+      <div class="val">ドラッグ＆ドロップ／シンプル操作／ローカル処理重視</div>
+    </div>
+    <div class="row">
+      <div class="key">対象</div>
+      <div class="val">動画視聴・画像閲覧・日常用途（学習/仕事/休日）</div>
+    </div>
+    <div class="row">
+      <div class="key">環境</div>
+      <div class="val">Windows 10/11 (64bit)</div>
+    </div>
+  </div>
+
+  <p class="smallnote" style="margin-top:12px;">
+    ※不具合報告や要望は、公式ページの案内から送ってください。反映できるものから順に対応します。
+  </p>
+</div>
+
+
 <div class="box">
-<h2>ダウンロード</h2>
-<a class="button" href="https://github.com/あなたのリポジトリ" target="_blank">
-最新版を取得
-</a>
+  <h2>ダウンロード</h2>
+  <p class="smallnote" style="margin:0 0 10px;">
+    最新版は公式の配布ページから入手できます。更新もこちらから案内します。
+  </p>
+  <a class="button" href="https://github.com/kakaposoft/kakaposoft.github.io/releases/download/kakapovisionplayer/Kakapo.Vision.Player.exe" target="_blank" rel="noopener">
+    最新版を取得
+  </a>
+
+  <div class="links" aria-label="download-links">
+    <a class="link" href="./privacy.html" rel="noopener">
+      <div>
+        <div class="title">プライバシーポリシー</div>
+        <div class="desc">サイト／アプリにおける情報の取り扱いについて</div>
+      </div>
+    </a>
+
+    <a class="link" href="./terms.html" rel="noopener">
+      <div>
+        <div class="title">利用規約</div>
+        <div class="desc">免責事項・禁止事項・アップデート方針など</div>
+      </div>
+    </a>
+
+    <a class="link" href="./about.html" rel="noopener">
+      <div>
+        <div class="title">開発メモ</div>
+        <div class="desc">開発動機／設計方針／今後の予定（ブログ）</div>
+      </div>
+    </a>
+  </div>
 </div>
 
-<!-- おすすめ（広告ゾーン） -->
-<div class="box">
-<h2>おすすめツール</h2>
-
-<a class="link" href="https://amzn.to/xxxx" target="_blank">
-高性能PC・GPUを見る
-</a>
-
-<a class="link" href="https://px.a8.net/xxxxx" target="_blank">
-AIツール一覧
-</a>
-
-<a class="link" href="https://px.a8.net/xxxxx" target="_blank">
-動画編集ソフト特集
-</a>
+<div class="footer">© KakapoSoft</div>
 
 </div>
-
-<!-- 開発支援 -->
-<div class="box">
-<h2>開発サポート</h2>
-<p>
-KakapoSoft は個人開発で制作されています。<br>
-広告のクリック・ご利用が開発の継続につながります。
-</p>
-</div>
-
-<div class="footer">
-© KakapoSoft
-</div>
-
-</div>
-
 </body>
 </html>
