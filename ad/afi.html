@@ -1,286 +1,64 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KakapoSoft</title>
 
-<style>
-:root{
-  --bg:#f6f7f7;
-  --card:#ffffff;
-  --card2:#f2f4f6;
-  --text:#1f2937;
-  --muted:#6b7280;
-  --accent:#2563eb;
-  --accentHover:#1d4ed8;
-  --shadow:0 10px 30px rgba(0,0,0,0.08);
-  --radius:14px;
-}
+<div class="box">
+<h2>動作環境</h2>
 
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Segoe UI,Meiryo,sans-serif;
-  text-align:center;
-  margin:0;
-}
+<div class="kv">
 
-.container{
-  max-width:720px;
-  margin:0 auto;
-  padding:22px 16px 40px;
-}
+<div class="row">
+<div class="key">OS</div>
+<div class="val">
+Windows 10 / Windows 11（64bit）
+</div>
+</div>
 
-h1{
-  color:#111827;
-  margin:14px 0 6px;
-  font-size:44px;
-  letter-spacing:.4px;
-}
+<div class="row">
+<div class="key">CPU</div>
+<div class="val">
+x64対応プロセッサ（マルチコア推奨）
+</div>
+</div>
 
-.subtitle{
-  color:var(--muted);
-  margin:0 0 18px;
-  font-size:14px;
-}
+<div class="row">
+<div class="key">メモリ</div>
+<div class="val">
+8GB以上推奨（AI機能使用時は16GB以上推奨）
+</div>
+</div>
 
-.box{
-  background:var(--card);
-  margin:16px 0;
-  padding:18px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  text-align:left;
-}
+<div class="row">
+<div class="key">GPU</div>
+<div class="val">
+DirectX 11対応GPU（AI処理時はGPU搭載環境推奨）
+</div>
+</div>
 
-.box h2{
-  margin:0 0 14px;
-  font-size:18px;
-  color:#111827;
-}
+<div class="row">
+<div class="key">ストレージ</div>
+<div class="val">
+500MB以上の空き容量（モデル・キャッシュにより増加する場合があります）
+</div>
+</div>
 
-.note{
-  margin-top:10px;
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.6;
-}
+<div class="row">
+<div class="key">ネット接続</div>
+<div class="val">
+起動時のバージョン確認・更新確認のためインターネット接続が必要です<br>
+（動画・画像・AI処理データの送信は行いません）
+</div>
+</div>
 
-/* バナーやテーブル広告を中央＆綺麗に */
-.ad-block{
-  margin:14px auto;
-  max-width:340px; /* 300px広告 + 余白 */
-  text-align:center;
-}
-
-.ad-block img{
-  max-width:100%;
-  height:auto;
-  border:0;
-  display:block;
-  margin:0 auto;
-}
-
-/* 楽天/A8 テーブル広告（白テーマ向け） */
-.ad-rakuten table{
-  width:100% !important;
-  border:1px solid rgba(0,0,0,0.12) !important;
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
-  box-shadow:0 10px 22px rgba(0,0,0,0.08);
-}
-
-.ad-rakuten td{
-  border-style:none !important;
-}
-
-.ad-rakuten a{
-  color:#0b3a91;
-  text-decoration:none;
-}
-
-.ad-rakuten a:hover{
-  text-decoration:underline;
-}
-
-.ad-rakuten p{
-  margin:0;
-}
-
-.ad-rakuten p[style*="color:#666"]{
-  color:var(--muted) !important;
-}
-
-/* 縦リンク（ボタンカード） */
-.links{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-top:14px;
-}
-
-.link{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 12px;
-  background:var(--card2);
-  border-radius:12px;
-  text-decoration:none;
-  color:var(--text);
-  transition:0.15s;
-  border:1px solid rgba(0,0,0,0.06);
-}
-
-.link:hover{
-  transform: translateY(-1px);
-  border-color: rgba(37,99,235,0.25);
-}
-
-.badge{
-  font-size:12px;
-  padding:4px 8px;
-  border-radius:999px;
-  background:rgba(37,99,235,0.10);
-  border:1px solid rgba(37,99,235,0.25);
-  color:#1d4ed8;
-  white-space:nowrap;
-}
-
-.link .title{
-  font-weight:700;
-  line-height:1.2;
-}
-
-.link .desc{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:2px;
-}
-
-.footer{
-  margin:22px 0 0;
-  font-size:12px;
-  color:#777;
-  text-align:center;
-}
-
-hr.soft{
-  border:0;
-  border-top:1px solid rgba(0,0,0,0.08);
-  margin:14px 0;
-}
-
-/* モバイル最適化 */
-@media (max-width: 480px){
-  h1{ font-size:34px; }
-  .box{ padding:16px; }
-  .ad-block{ max-width:100%; }
-}
-</style>
-</head>
-
-<body>
-<div class="container">
-
-  <h1>KakapoSoft</h1>
-  <div class="subtitle">軽量・高機能な動画プレイヤー</div>
-
-  <div class="box">
-    <h2>おすすめツール（広告）</h2>
-
-    <!-- 楽天バナー広告 -->
-    <div class="ad-block">
-      <a href="https://rpx.a8.net/svt/ejp?a8mat=4AX8OF+ALMVJM+2HOM+5YRHD&rakuten=y"
-         rel="nofollow noopener sponsored" target="_blank">
-        <img src="http://hbb.afl.rakuten.co.jp/hsb/0eb4bbac.29e8057d.0eb4bbaa.95151395/" alt="楽天広告">
-      </a>
-      <img width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4AX8OF+ALMVJM+2HOM+5YRHD" alt="">
-    </div>
-
-    <!-- 楽天/A8 商品広告（テーブルそのまま＋カード化） -->
-    <div class="ad-block ad-rakuten">
-      <table cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ccc; width:300px;">
-        <tbody>
-          <tr style="border-style:none;">
-            <td style="vertical-align:top; border-style:none; padding:10px; width:44px;">
-              <a href="https://rpx.a8.net/svt/ejp?a8mat=4AX8OF+ALMVJM+2HOM+BWGDT&rakuten=y&a8ejpredirect=https%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2Fg00rzxd4.2bo1115c.g00rzxd4.2bo12fc2%2Fa26021178044_4AX8OF_ALMVJM_2HOM_BWGDT%3Fpc%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fsoukaidrink%252F4902102137072%252F%26amp%3Bm%3Dhttp%253A%252F%252Fm.rakuten.co.jp%252Fsoukaidrink%252Fi%252F10009324%252F%26amp%3Brafcid%3Dwsc_i_is_33f72da33714639c415e592c9633ecd7"
-                 rel="nofollow noopener sponsored" target="_blank">
-                <img border="0" alt="" src="https://thumbnail.image.rakuten.co.jp/@0_mall/soukaidrink/cabinet/072/4902102137072.jpg?_ex=64x64" />
-              </a>
-            </td>
-
-            <td style="font-size:12px; vertical-align:middle; border-style:none; padding:10px;">
-              <p style="padding:0; margin:0;">
-                <a href="https://rpx.a8.net/svt/ejp?a8mat=4AX8OF+ALMVJM+2HOM+BWGDT&rakuten=y&a8ejpredirect=https%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2Fg00rzxd4.2bo1115c.g00rzxd4.2bo12fc2%2Fa26021178044_4AX8OF_ALMVJM_2HOM_BWGDT%3Fpc%3Dhttps%253A%252F%252Fitem.rakuten.co.jp%252Fsoukaidrink%252F4902102137072%252F%26amp%3Bm%3Dhttp%253A%252F%252Fm.rakuten.co.jp%252Fsoukaidrink%252Fi%252F10009324%252F%26amp%3Brafcid%3Dwsc_i_is_33f72da33714639c415e592c9633ecd7"
-                   rel="nofollow noopener sponsored" target="_blank">
-                  【訳あり】コカ・コーラ PET(350ml*24本入)【コカコーラ(Coca-Cola)】[炭酸飲料]
-                </a>
-              </p>
-
-              <!-- ★セミコロン修正済み -->
-              <p style="color:#666; margin-top:5px; line-height:1.5;">
-                価格:<span style="font-size:14px; color:#C00; font-weight:bold;">2235円</span><br/>
-                <span style="font-size:10px; font-weight:normal;">(2026/2/12 18:14時点)</span><br/>
-                <span style="font-weight:bold;">感想(119件)</span>
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4AX8OF+ALMVJM+2HOM+BWGDT" alt="">
-    </div>
-
-    <!-- 縦リンク型広告 -->
-    <div class="links">
-      <a class="link" href="https://amzn.to/xxxx" target="_blank" rel="noopener sponsored">
-        <span class="badge">PC</span>
-        <span>
-          <div class="title">高性能PC・GPU</div>
-          <div class="desc">AI・動画処理向け</div>
-        </span>
-      </a>
-
-      <a class="link" href="https://px.a8.net/xxxxx" target="_blank" rel="noopener sponsored">
-        <span class="badge">AI</span>
-        <span>
-          <div class="title">AIツール一覧</div>
-          <div class="desc">画像・動画・音声</div>
-        </span>
-      </a>
-
-      <a class="link" href="https://px.a8.net/xxxxx" target="_blank" rel="noopener sponsored">
-        <span class="badge">編集</span>
-        <span>
-          <div class="title">動画編集ソフト</div>
-          <div class="desc">カット・字幕・出力</div>
-        </span>
-      </a>
-    </div>
-
-    <div class="note">
-      ※上のリンクはアフィリエイト広告を含みます。購入・申し込みにより開発支援になります。
-    </div>
-  </div>
-
-  <!-- 開発支援 -->
-  <div class="box">
-    <h2>開発サポート</h2>
-    <p style="margin:0; line-height:1.8;">
-      KakapoSoft は個人開発で制作されています。<br>
-      広告リンクの利用が開発の継続につながります。
-    </p>
-    <hr class="soft">
-    <div class="note">
-      PayPal支援ボタンも置けます（屋号表示ならビジネスアカウント推奨）。
-    </div>
-  </div>
-
-  <div class="footer">© KakapoSoft</div>
+<div class="row">
+<div class="key">ランタイム</div>
+<div class="val">
+Microsoft WebView2 Runtime（未インストールの場合は自動取得または手動インストール）
+</div>
+</div>
 
 </div>
-</body>
-</html>
+
+<p class="smallnote" style="margin-top:12px;">
+※AI機能の処理速度は、GPU性能・VRAM容量・モデルサイズにより大きく変動します。<br>
+※一部の環境（GPUドライバ、セキュリティソフト、特殊なコーデック環境等）では正常に動作しない場合があります。
+</p>
+
+</div>
