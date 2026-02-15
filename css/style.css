@@ -273,4 +273,17 @@ blockquote {
   h2 {
     font-size: 20px;
   }
+  /* ソフトタイトル＋アイコン */
+.soft-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.soft-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 }
