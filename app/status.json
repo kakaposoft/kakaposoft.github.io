@@ -1,9 +1,10 @@
+
 {
   "payload": {
     "allow": true,
     "emergency": false,
     "message": "OK",
-    "expiresUtc": "2026-02-18T12:14:38Z"
+    "expiresUtc": "2026-03-17T17:50:07Z"
   },
-  "signature": "utIka2NS9FYHO1oj6Vxj1uUGcCxxf\u002BmGMLtYgka7mwBxALqkpv2cglKUW1M11st5PDPZOKKf4hMcCAPWx\u002BDqrw=="
+  "signature": "0D\u002BLq2/D0Qcnafd3o7qt6Gx0YI3mTllSpQqTGhnTavOKnhtpYNQCyvCINdgQpdKEbw5m9VBX91wNJuuVLYFPOA=="
 }
