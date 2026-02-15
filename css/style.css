@@ -25,7 +25,6 @@ header {
   padding: 34px 30px 22px;
   text-align: center;
   background: linear-gradient(180deg, rgba(11,93,42,.08), rgba(11,93,42,0));
-  /* 念のため：前面に来るように（重なり対策） */
   position: relative;
   z-index: 2;
 }
@@ -48,7 +47,6 @@ h1 {
 h1 a { color: #000; text-decoration: none; }
 h1 a:hover { text-decoration: underline; }
 
-/* kakapo部分だけ深緑 */
 .kakapo {
   color: #0b5d2a;
   font-weight: 800;
@@ -91,22 +89,12 @@ img {
 
 a { color: #094a94; }
 
-/* ===== layout（floatをやめて安定させる） ===== */
+/* ===== layout（左メニュー / 右本文：Flexで安定） ===== */
 #content {
   padding: 10px 20px 0;
   display: flex;
   gap: 20px;
   align-items: flex-start;
-}
-
-/* 右：本文 */
-.inner {
-  flex: 1;
-  min-width: 0;          /* これが無いとiframe等で横はみ出しが起きる */
-  padding: 10px 20px;
-  border-radius: 14px;
-  box-shadow: 0 8px 18px rgba(0,0,0,.10);
-  background: #fff;
 }
 
 /* 左：メニュー */
@@ -117,6 +105,21 @@ aside {
   background-color: #f8f8f8;
   border-radius: 14px;
   box-shadow: 0 8px 18px rgba(0,0,0,.06);
+
+  /* ここで左固定（HTML順に左右されない） */
+  order: 1;
+}
+
+/* 右：本文 */
+.inner {
+  flex: 1;
+  min-width: 0;          /* iframe等のはみ出し対策 */
+  padding: 10px 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.10);
+  background: #fff;
+
+  order: 2;
 }
 
 .left-title {
@@ -154,7 +157,7 @@ ul {
 }
 
 /* ===== YouTube（CSSだけでレスポンシブ） ===== */
-/* HTML側は <div class="video"><iframe ...></iframe></div> に統一推奨 */
+/* HTML側は <div class="video"><iframe ...></iframe></div> が推奨 */
 .video {
   position: relative;
   width: 100%;
@@ -233,7 +236,7 @@ blockquote {
 
   #content {
     padding: 0 10px;
-    display: block;   /* モバイルは縦並び */
+    display: block;
   }
 
   .inner,
