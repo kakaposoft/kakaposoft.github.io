@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>Kakapo Support</title>
+
+<!-- PayPal SDK（1ページに1回） -->
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
+</script>
+
 </head>
+
 <body style="font-family:sans-serif;background:#0f1420;color:white">
 
 <h1>Kakapo Vision Player 支援</h1>
@@ -13,17 +20,25 @@
 
 <h2>支援方法</h2>
 
-<p>
-<a href="https://www.paypal.com/paypalme/あなた">PayPal</a>
-</p>
+<!-- PayPalボタン表示場所 -->
+<div id="paypal-container"></div>
+
+<script>
+paypal.HostedButtons({
+    hostedButtonId: "ここにPayPalで発行されたボタンID"
+}).render("#paypal-container");
+</script>
 
 <hr>
+
 <p>
 チャンネルにて活動状況をチェックできます！
 </p>
-<a href="https://www.youtube.com/@sekiseikakapo" target="_blank">
+
+<a href="https://www.youtube.com/@sekiseikakapo" target="_blank" style="color:#7ec8ff">
 YouTubeチャンネルを見る
 </a>
+
 <h2>支援コード</h2>
 <p>支援後、以下のコードをソフトに入力してください。</p>
 
