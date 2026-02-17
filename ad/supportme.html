@@ -1,50 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-<meta charset="utf-8">
-<title>Kakapo Support</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kakapo Support</title>
 
-<!-- PayPal SDK（1ページに1回） -->
-<script 
-  src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
-</script>
-
+  <!-- PayPal SDK（1ページに1回だけ） -->
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
+  </script>
 </head>
 
-<body style="font-family:sans-serif;background:#0f1420;color:white">
+<body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;">
 
-<h1>Kakapo Vision Player 支援</h1>
+  <h1>Kakapo Vision Player 支援</h1>
 
-<p>このソフトは個人開発です。</p>
-<p>支援していただけると開発継続できます。</p>
+  <p>このソフトは個人開発です。支援していただけると開発継続できます。</p>
 
-<h2>支援方法</h2>
+  <h2>支援方法</h2>
 
-<!-- PayPalボタン表示場所 -->
-<div id="paypal-container"></div>
+  <div id="paypal-container"></div>
 
-<script>
-paypal.HostedButtons({
-    hostedButtonId: "ここにPayPalで発行されたボタンID"
-}).render("#paypal-container");
-</script>
+  <script>
+    // ★ここをあなたのHosted Button IDに置き換え
+    paypal.HostedButtons({
+      hostedButtonId: "REPLACE_WITH_YOUR_HOSTED_BUTTON_ID"
+    }).render("#paypal-container");
+  </script>
 
-<hr>
+  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
 
-<p>
-チャンネルにて活動状況をチェックできます！
-</p>
+  <p>チャンネルにて活動状況をチェックできます！</p>
+  <p><a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">YouTubeチャンネルを見る</a></p>
 
-<a href="https://www.youtube.com/@sekiseikakapo" target="_blank" style="color:#7ec8ff">
-YouTubeチャンネルを見る
-</a>
-
-<h2>支援コード</h2>
-<p>支援後、以下のコードをソフトに入力してください。</p>
-
-<pre>
-KAKAPO-2026-SUPPORT
-</pre>
+  <h2>支援コード</h2>
+  <p>支援後、以下のコードをソフトに入力してください。</p>
+  <pre style="background:#121a2a;color:#d7e3ff;padding:12px;border-radius:8px;overflow:auto;">KAKAPO-2026-SUPPORT</pre>
 
 </body>
 </html>
