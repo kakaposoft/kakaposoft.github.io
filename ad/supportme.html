@@ -8,7 +8,6 @@
   <!-- PayPal SDK（1ページに1回だけ） -->
   <script
     src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
-  </script>
 </head>
 
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;">
@@ -21,12 +20,12 @@
 
   <div id="paypal-container"></div>
 
-  <script>
-    // ★ここをあなたのHosted Button IDに置き換え
-    paypal.HostedButtons({
-      hostedButtonId: "REPLACE_WITH_YOUR_HOSTED_BUTTON_ID"
-    }).render("#paypal-container");
-  </script>
+  <div id="paypal-container-XKNQE29AEAD58"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "XKNQE29AEAD58",
+  }).render("#paypal-container-XKNQE29AEAD58")
+</script>
 
   <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
 
