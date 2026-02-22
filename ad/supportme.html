@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kakapo Support</title>
+  <title>Kakapo 応援</title>
 
-  <!-- PayPal SDK（1ページに1回だけ） -->
   <script
     src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
   </script>
@@ -13,34 +13,71 @@
 
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;">
 
-  <h1>Kakapo Vision Player 支援</h1>
+  <h1>Kakapo Vision Player 応援ページ</h1>
 
-  <p>このソフトは個人開発です。支援していただけると開発継続できます。</p>
+  <p style="opacity:0.92;">
+    Kakapo Vision Player は個人開発ソフトです。<br>
+    もし「いいね」と思っていただけたら、開発の応援をしてもらえると嬉しいです。
+  </p>
 
-  <h2>支援方法</h2>
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;">
+    <h2 style="margin:0 0 8px 0;font-size:18px;">応援するとどうなる？</h2>
+    <ul style="margin:0;padding-left:18px;line-height:1.7;opacity:0.95;">
+      <li>アプリ内の「応援モード（お礼機能）」が利用できます</li>
+      <li>機能は“購入”ではなく、応援へのお礼として提供しています</li>
+    </ul>
+    <p style="margin:10px 0 0 0;opacity:0.8;font-size:13px;">
+      ※ 応援は任意です。アプリの基本機能は、応援なしでも利用できます。
+    </p>
+  </div>
 
+  <h2>応援方法（PayPal）</h2>
   <div id="paypal-container-XKNQE29AEAD58"></div>
 
   <script>
-    // PayPalのSDKが読み込めていない時に気づけるようにガード（任意）
     if (window.paypal && paypal.HostedButtons) {
       paypal.HostedButtons({
         hostedButtonId: "XKNQE29AEAD58",
       }).render("#paypal-container-XKNQE29AEAD58");
     } else {
       document.getElementById("paypal-container-XKNQE29AEAD58").innerHTML =
-        '<p>PayPalボタンの読み込みに失敗しました。広告ブロッカーをOFFにして再読み込みしてください。</p>';
+        '<p style="opacity:0.9;">PayPalボタンの読み込みに失敗しました。広告ブロッカーをOFFにして再読み込みしてください。</p>';
     }
   </script>
 
   <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
 
-  <p>チャンネルにて活動状況をチェックできます！</p>
-  <p><a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">YouTubeチャンネルを見る</a></p>
+  <h2>応援コード（アプリに入力）</h2>
+  <ol style="line-height:1.8;opacity:0.95;">
+    <li>応援後に表示される「応援コード（publicId）」を控えます</li>
+    <li>アプリを右クリック →「応援コードで認証…」から貼り付けます</li>
+  </ol>
 
-  <h2>支援コード</h2>
-  <p>支援後、以下のコードをソフトに入力してください。</p>
-  <pre style="background:#121a2a;color:#d7e3ff;padding:12px;border-radius:8px;overflow:auto;">KAKAPO-2026-SUPPORT</pre>
+  <div style="background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:10px;padding:12px;margin:12px 0;">
+    <p style="margin:0 0 8px 0;opacity:0.9;">ここに <b>個別の応援コード（publicId）</b> を貼り付けてください：</p>
+    <pre style="background:#121a2a;color:#d7e3ff;padding:12px;border-radius:8px;overflow:auto;margin:0;">（例）KAKAPO-XXXX-XXXX-XXXX</pre>
+    <p style="margin:8px 0 0 0;opacity:0.75;font-size:13px;">
+      ※ このコードは「応援のお礼機能」を有効にするためのものです。<br>
+      ※ コードが確認できない場合は、数分後にもう一度お試しください（キャッシュ反映の都合）。
+    </p>
+  </div>
+
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;opacity:0.92;">
+    <h3 style="margin:0 0 6px 0;font-size:16px;">お願い（トラブル防止）</h3>
+    <p style="margin:0;line-height:1.7;font-size:13px;opacity:0.85;">
+      応援は任意の「お気持ち」です。機能の恒久提供・動作保証・個別サポートを約束するものではありません。<br>
+      （もちろん、できる範囲で改善は続けます！）
+    </p>
+  </div>
+
+  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
+
+  <p style="opacity:0.9;">チャンネルで活動状況をチェックできます：</p>
+  <p>
+    <a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
+      YouTubeチャンネルを見る
+    </a>
+  </p>
 
 </body>
 </html>
