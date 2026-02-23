@@ -1,83 +1,109 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kakapo 応援</title>
-
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
-  </script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>応援コード 発行</title>
 </head>
-
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;">
 
-  <h1>Kakapo Vision Player 応援ページ</h1>
+<h1>応援コード（publicId）の発行</h1>
 
-  <p style="opacity:0.92;">
-    Kakapo Vision Player は個人開発ソフトです。<br>
-    もし「いいね」と思っていただけたら、開発の応援をしてもらえると嬉しいです。
-  </p>
+<p style="opacity:.9;line-height:1.7;">
+  PayPal応援後に表示される <b>取引ID（または注文ID）</b> を入力してください。<br>
+  失くした場合も、同じIDを入れれば同じコードを再表示できます。
+</p>
 
-  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;">
-    <h2 style="margin:0 0 8px 0;font-size:18px;">応援するとどうなる？</h2>
-    <ul style="margin:0;padding-left:18px;line-height:1.7;opacity:0.95;">
-      <li>アプリ内の「応援モード（お礼機能）」が利用できます</li>
-      <li>機能は“購入”ではなく、応援へのお礼として提供しています</li>
-    </ul>
-    <p style="margin:10px 0 0 0;opacity:0.8;font-size:13px;">
-      ※ 応援は任意です。アプリの基本機能は、応援なしでも利用できます。
-    </p>
+<div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
+  <div style="margin-bottom:10px;">
+    <label>プラン</label><br>
+    <select id="plan" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1020;color:#d7e3ff;">
+      <option value="P1M">ライト（300円 / 1か月）</option>
+      <option value="P6M">ロング（1200円 / 6か月）</option>
+    </select>
   </div>
 
-  <h2>応援方法（PayPal）</h2>
-  <div id="paypal-container-XKNQE29AEAD58"></div>
+  <div>
+    <label>取引ID / 注文ID</label><br>
+    <input id="tx" placeholder="例）1AB23456CD789012E"
+      style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1020;color:#d7e3ff;">
+  </div>
 
-  <script>
-    if (window.paypal && paypal.HostedButtons) {
-      paypal.HostedButtons({
-        hostedButtonId: "XKNQE29AEAD58",
-      }).render("#paypal-container-XKNQE29AEAD58");
-    } else {
-      document.getElementById("paypal-container-XKNQE29AEAD58").innerHTML =
-        '<p style="opacity:0.9;">PayPalボタンの読み込みに失敗しました。広告ブロッカーをOFFにして再読み込みしてください。</p>';
+  <button id="btn"
+    style="margin-top:12px;padding:10px 14px;border-radius:12px;border:0;background:#2b5cff;color:white;cursor:pointer;">
+    発行する
+  </button>
+
+  <p id="msg" style="margin:10px 0 0 0;opacity:.9;"></p>
+
+  <pre id="out" style="display:none;background:#0b1020;border:1px dashed rgba(255,255,255,.25);border-radius:12px;padding:12px;overflow:auto;"></pre>
+  <p id="exp" style="display:none;margin:8px 0 0 0;opacity:.8;"></p>
+</div>
+
+<p style="margin-top:16px;">
+  <a href="./index.html" style="color:#7ec8ff;">← 応援ページに戻る</a>
+</p>
+
+<script>
+  // ★ここをあなたのWorkers APIに差し替え
+  const API_ISSUE = "https://kakapo-api.suzukiby039.workers.dev/issue";
+
+  const planEl = document.getElementById("plan");
+  const txEl = document.getElementById("tx");
+  const btn = document.getElementById("btn");
+  const msg = document.getElementById("msg");
+  const out = document.getElementById("out");
+  const exp = document.getElementById("exp");
+
+  function fmtDate(ms){
+    try{
+      const d = new Date(ms);
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,"0");
+      const dd = String(d.getDate()).padStart(2,"0");
+      return `${y}-${m}-${dd}`;
+    }catch{ return ""; }
+  }
+
+  btn.onclick = async () => {
+    out.style.display = "none";
+    exp.style.display = "none";
+    out.textContent = "";
+    exp.textContent = "";
+
+    const txId = (txEl.value || "").trim();
+    const plan = planEl.value;
+
+    if (!txId) { msg.textContent = "取引ID / 注文ID を入力してください。"; return; }
+
+    msg.textContent = "発行中…";
+
+    try{
+      const r = await fetch(API_ISSUE, {
+        method: "POST",
+        headers: {"content-type":"application/json"},
+        body: JSON.stringify({ txId, plan })
+      });
+
+      const j = await r.json().catch(()=> ({}));
+      if (!r.ok || !j.ok) {
+        msg.textContent = j.error || "発行に失敗しました。";
+        return;
+      }
+
+      msg.textContent = j.reused ? "以前発行したコードを再表示しました。" : "応援コードを発行しました。";
+      out.style.display = "block";
+      out.textContent = j.publicId;
+
+      if (j.expiresUtc && j.expiresUtc > 0) {
+        exp.style.display = "block";
+        exp.textContent = `期限：${fmtDate(j.expiresUtc)} まで`;
+      }
+    }catch(e){
+      msg.textContent = "通信に失敗しました。時間をおいてお試しください。";
     }
-  </script>
-
-  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
-
-  <h2>応援コード（アプリに入力）</h2>
-  <ol style="line-height:1.8;opacity:0.95;">
-    <li>応援後に表示される「応援コード（publicId）」を控えます</li>
-    <li>アプリを右クリック →「応援コードで認証…」から貼り付けます</li>
-  </ol>
-
-  <div style="background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:10px;padding:12px;margin:12px 0;">
-    <p style="margin:0 0 8px 0;opacity:0.9;">ここに <b>個別の応援コード（publicId）</b> を貼り付けてください：</p>
-    <pre style="background:#121a2a;color:#d7e3ff;padding:12px;border-radius:8px;overflow:auto;margin:0;">（例）KAKAPO-XXXX-XXXX-XXXX</pre>
-    <p style="margin:8px 0 0 0;opacity:0.75;font-size:13px;">
-      ※ このコードは「応援のお礼機能」を有効にするためのものです。<br>
-      ※ コードが確認できない場合は、数分後にもう一度お試しください（キャッシュ反映の都合）。
-    </p>
-  </div>
-
-  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;opacity:0.92;">
-    <h3 style="margin:0 0 6px 0;font-size:16px;">お願い（トラブル防止）</h3>
-    <p style="margin:0;line-height:1.7;font-size:13px;opacity:0.85;">
-      応援は任意の「お気持ち」です。機能の恒久提供・動作保証・個別サポートを約束するものではありません。<br>
-      （もちろん、できる範囲で改善は続けます！）
-    </p>
-  </div>
-
-  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
-
-  <p style="opacity:0.9;">チャンネルで活動状況をチェックできます：</p>
-  <p>
-    <a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
-      YouTubeチャンネルを見る
-    </a>
-  </p>
+  };
+</script>
 
 </body>
 </html>
