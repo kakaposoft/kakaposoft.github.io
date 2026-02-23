@@ -1,122 +1,132 @@
 
 <!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kakapo Vision Player 応援ページ</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kakapo Vision Player 応援ページ</title>
 
-  <!-- PayPal SDK（1ページに1回だけ） -->
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
-  </script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY"></script>
 </head>
 
-<body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;">
+<body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;line-height:1.7;">
 
-  <h1>Kakapo Vision Player 応援ページ</h1>
+<h1>Kakapo Vision Player 応援ページ</h1>
 
-  <p style="opacity:0.92;line-height:1.7;">
-    Kakapo Vision Player は個人開発ソフトです。<br>
-    もし「いいね」と思っていただけたら、開発の応援をしてもらえると嬉しいです。<br>
-    応援後に「発行ページ」で <b>応援コード（publicId）</b> を受け取れます。
-  </p>
+<!-- ===== 最重要：誤解防止 ===== -->
+<div style="background:#1a2238;border:2px solid #ffb74d;border-radius:10px;padding:14px;margin-bottom:18px;">
+<b style="font-size:16px;">※ これは「購入」ではありません</b><br>
+本ページはソフトの販売ではなく、<b>開発への任意の応援（寄付）</b>です。<br>
+アプリの基本機能は、応援なしでも利用できます。
+</div>
 
-  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;">
-    <h2 style="margin:0 0 8px 0;font-size:18px;">応援するとどうなる？</h2>
-    <ul style="margin:0;padding-left:18px;line-height:1.7;opacity:0.95;">
-      <li>アプリ内の「応援モード（お礼機能）」が利用できます</li>
-      <li>機能は“購入”ではなく、応援へのお礼として提供しています</li>
-    </ul>
-    <p style="margin:10px 0 0 0;opacity:0.8;font-size:13px;">
-      ※ 応援は任意です。アプリの基本機能は、応援なしでも利用できます。
-    </p>
-  </div>
+<p style="opacity:0.92;">
+もし「いいね」と思っていただけたら、開発の応援をしていただけると嬉しいです。<br>
+応援後、発行ページで「応援コード」を受け取れます。
+</p>
 
-  <h2>応援方法（PayPal）</h2>
-  <p style="opacity:0.9;line-height:1.7;margin-top:-6px;">
-    2つのプランから選べます（内容は同じで、期限だけ違います）。
-  </p>
+<!-- ===== 特典説明（誤解を防ぐ） ===== -->
+<div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;">
+<h2 style="margin-top:0;">応援すると</h2>
+<ul style="padding-left:18px;">
+<li>アプリ内の「応援モード（お礼機能）」が利用できます</li>
+<li>内容はプランによらず同じで、期間のみ異なります</li>
+</ul>
+<p style="font-size:13px;opacity:0.8;margin:8px 0 0 0;">
+※ 特典はお礼機能であり、購入商品ではありません。
+</p>
+</div>
 
-  <!-- ===== プラン ===== -->
-  <div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;margin-bottom:14px;">
-    <h3 style="margin:0 0 6px 0;">ライト（1か月） 300円</h3>
-    <p style="margin:0 0 10px 0;opacity:0.85;font-size:13px;line-height:1.6;">
-      ちょっと応援してみる用。期限：<b>1か月</b>
-    </p>
-    <div id="paypal-1m"></div>
-  </div>
+<!-- ===== 同意ブロック（最重要） ===== -->
+<div style="background:#1a2238;border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:14px;margin:18px 0;">
+<h3 style="margin-top:0;">重要事項（必ずご確認ください）</h3>
 
-  <div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
-    <h3 style="margin:0 0 6px 0;">ロング（6か月） 1200円</h3>
-    <p style="margin:0 0 10px 0;opacity:0.85;font-size:13px;line-height:1.6;">
-      ゆるく長めに見守る用。期限：<b>6か月</b>
-    </p>
-    <div id="paypal-6m"></div>
-  </div>
+<p style="font-size:13px;opacity:0.9;">
+・本支援は商品の購入ではなく、任意の寄付です。<br>
+・返金、補償、サポート、個別対応は行っておりません。<br>
+・応援特典はお礼として提供するもので、すべての環境での動作を保証するものではありません。<br>
+・設定および利用は利用者ご自身の責任で行ってください。<br>
+・環境差異、操作方法、知識不足、通信状況等により利用できない場合でも対応は行いません。<br>
+・本ソフトは個人開発です。
+</p>
 
-  <script>
-    // ★ここをあなたのPayPal Hosted Button IDに差し替え
-    // 例：いまの "XKNQE29AEAD58" はどちらか片方に入れる
-    const BTN_1M = "【1か月プランの hostedButtonId】";
-    const BTN_6M = "【6か月プランの hostedButtonId】";
+<label style="display:flex;gap:8px;margin-top:10px;font-weight:bold;">
+<input type="checkbox" id="agreeCheck">
+<span>上記内容を理解し、同意します</span>
+</label>
+</div>
 
-    function renderPaypal() {
-      if (window.paypal && paypal.HostedButtons) {
-        paypal.HostedButtons({ hostedButtonId: BTN_1M }).render("#paypal-1m");
-        paypal.HostedButtons({ hostedButtonId: BTN_6M }).render("#paypal-6m");
-      } else {
-        document.getElementById("paypal-1m").innerHTML =
-          '<p style="opacity:0.9;">PayPalボタンの読み込みに失敗しました。広告ブロッカーをOFFにして再読み込みしてください。</p>';
-        document.getElementById("paypal-6m").innerHTML =
-          '<p style="opacity:0.9;">PayPalボタンの読み込みに失敗しました。広告ブロッカーをOFFにして再読み込みしてください。</p>';
-      }
+<h2>応援方法（PayPal）</h2>
+<p style="font-size:14px;opacity:0.9;">
+同意チェックを入れるとボタンが有効になります。
+</p>
+
+<div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;margin-bottom:14px;">
+<h3>ライト（1か月） 300円</h3>
+<div id="paypal-1m"></div>
+</div>
+
+<div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
+<h3>ロング（6か月） 1200円</h3>
+<div id="paypal-6m"></div>
+</div>
+
+<script>
+const BTN_1M = "【1か月のHostedButtonId】";
+const BTN_6M = "【6か月のHostedButtonId】";
+
+function renderPaypal() {
+  if (window.paypal && paypal.HostedButtons) {
+    paypal.HostedButtons({ hostedButtonId: BTN_1M }).render("#paypal-1m");
+    paypal.HostedButtons({ hostedButtonId: BTN_6M }).render("#paypal-6m");
+  }
+}
+renderPaypal();
+
+// 同意チェックガード
+function guard(containerId){
+  const box = document.getElementById("agreeCheck");
+  const el = document.getElementById(containerId);
+  el.addEventListener("click", function(e){
+    if(!box.checked){
+      e.preventDefault();
+      e.stopPropagation();
+      alert("支援前に重要事項への同意が必要です。");
     }
-    renderPaypal();
-  </script>
+  }, true);
+}
 
-  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
+guard("paypal-1m");
+guard("paypal-6m");
+</script>
 
-  <!-- ===== 発行ページ導線 ===== -->
-  <h2>応援コードの発行</h2>
-  <ol style="line-height:1.8;opacity:0.95;margin-top:8px;">
-    <li>PayPalで応援します（上のどちらか）</li>
-    <li>PayPal側で表示される「取引ID（または注文ID）」を控えます</li>
-    <li>発行ページでIDを入力し、<b>応援コード（publicId）</b> を受け取ります</li>
-    <li>アプリを右クリック →「応援コードで認証…」から貼り付けます</li>
-  </ol>
+<hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
 
-  <p style="margin:10px 0 0 0;">
-    <a href="./issue.html" style="color:#7ec8ff;font-weight:bold;">発行ページへ →</a>
-  </p>
+<h2>応援コードの受け取り（簡単3ステップ）</h2>
+<ol>
+<li>PayPalで応援する</li>
+<li>表示される「取引ID」を控える</li>
+<li><a href="./issue.html" style="color:#7ec8ff;font-weight:bold;">発行ページ</a>で入力する</li>
+</ol>
 
-  <div style="background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:10px;padding:12px;margin:12px 0;">
-    <p style="margin:0 0 8px 0;opacity:0.9;">
-      発行される <b>個別の応援コード（publicId）</b> はこんな形です：
-    </p>
-    <pre style="background:#121a2a;color:#d7e3ff;padding:12px;border-radius:8px;overflow:auto;margin:0;">（例）KAKAPO-XXXX-XXXX-XXXX</pre>
-    <p style="margin:8px 0 0 0;opacity:0.75;font-size:13px;line-height:1.6;">
-      ※ 同じ「取引ID/注文ID」なら、何度でも同じコードを再表示できます（紛失対策）。<br>
-      ※ 反映に少し時間がかかる場合があります。数分後にもう一度お試しください。
-    </p>
-  </div>
+<div style="background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:10px;padding:12px;margin-top:12px;">
+<p style="font-size:13px;opacity:0.85;">
+※ 反映まで数分かかる場合があります。<br>
+※ 同じ取引IDで再発行できます。
+</p>
+</div>
 
-  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;opacity:0.92;">
-    <h3 style="margin:0 0 6px 0;font-size:16px;">お願い（トラブル防止）</h3>
-    <p style="margin:0;line-height:1.7;font-size:13px;opacity:0.85;">
-      応援は任意の「お気持ち」です。機能の恒久提供・動作保証・個別サポートを約束するものではありません。<br>
-      （もちろん、できる範囲で改善は続けます！）
-    </p>
-  </div>
+<hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
 
-  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
-
-  <p style="opacity:0.9;">チャンネルで活動状況をチェックできます：</p>
-  <p>
-    <a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
-      YouTubeチャンネルを見る
-    </a>
-  </p>
+<p style="opacity:0.9;">
+活動状況はこちら：
+</p>
+<p>
+<a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
+YouTubeチャンネルを見る
+</a>
+</p>
 
 </body>
 </html>
