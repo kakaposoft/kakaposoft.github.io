@@ -1,109 +1,122 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>応援コード 発行</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kakapo Vision Player 応援ページ</title>
+
+  <!-- PayPal SDK（1ページに1回だけ） -->
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
+  </script>
 </head>
+
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;">
 
-<h1>応援コード（publicId）の発行</h1>
+  <h1>Kakapo Vision Player 応援ページ</h1>
 
-<p style="opacity:.9;line-height:1.7;">
-  PayPal応援後に表示される <b>取引ID（または注文ID）</b> を入力してください。<br>
-  失くした場合も、同じIDを入れれば同じコードを再表示できます。
-</p>
+  <p style="opacity:0.92;line-height:1.7;">
+    Kakapo Vision Player は個人開発ソフトです。<br>
+    もし「いいね」と思っていただけたら、開発の応援をしてもらえると嬉しいです。<br>
+    応援後に「発行ページ」で <b>応援コード（publicId）</b> を受け取れます。
+  </p>
 
-<div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
-  <div style="margin-bottom:10px;">
-    <label>プラン</label><br>
-    <select id="plan" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1020;color:#d7e3ff;">
-      <option value="P1M">ライト（300円 / 1か月）</option>
-      <option value="P6M">ロング（1200円 / 6か月）</option>
-    </select>
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;">
+    <h2 style="margin:0 0 8px 0;font-size:18px;">応援するとどうなる？</h2>
+    <ul style="margin:0;padding-left:18px;line-height:1.7;opacity:0.95;">
+      <li>アプリ内の「応援モード（お礼機能）」が利用できます</li>
+      <li>機能は“購入”ではなく、応援へのお礼として提供しています</li>
+    </ul>
+    <p style="margin:10px 0 0 0;opacity:0.8;font-size:13px;">
+      ※ 応援は任意です。アプリの基本機能は、応援なしでも利用できます。
+    </p>
   </div>
 
-  <div>
-    <label>取引ID / 注文ID</label><br>
-    <input id="tx" placeholder="例）1AB23456CD789012E"
-      style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1020;color:#d7e3ff;">
+  <h2>応援方法（PayPal）</h2>
+  <p style="opacity:0.9;line-height:1.7;margin-top:-6px;">
+    2つのプランから選べます（内容は同じで、期限だけ違います）。
+  </p>
+
+  <!-- ===== プラン ===== -->
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;margin-bottom:14px;">
+    <h3 style="margin:0 0 6px 0;">ライト（1か月） 300円</h3>
+    <p style="margin:0 0 10px 0;opacity:0.85;font-size:13px;line-height:1.6;">
+      ちょっと応援してみる用。期限：<b>1か月</b>
+    </p>
+    <div id="paypal-1m"></div>
   </div>
 
-  <button id="btn"
-    style="margin-top:12px;padding:10px 14px;border-radius:12px;border:0;background:#2b5cff;color:white;cursor:pointer;">
-    発行する
-  </button>
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
+    <h3 style="margin:0 0 6px 0;">ロング（6か月） 1200円</h3>
+    <p style="margin:0 0 10px 0;opacity:0.85;font-size:13px;line-height:1.6;">
+      ゆるく長めに見守る用。期限：<b>6か月</b>
+    </p>
+    <div id="paypal-6m"></div>
+  </div>
 
-  <p id="msg" style="margin:10px 0 0 0;opacity:.9;"></p>
+  <script>
+    // ★ここをあなたのPayPal Hosted Button IDに差し替え
+    // 例：いまの "XKNQE29AEAD58" はどちらか片方に入れる
+    const BTN_1M = "【1か月プランの hostedButtonId】";
+    const BTN_6M = "【6か月プランの hostedButtonId】";
 
-  <pre id="out" style="display:none;background:#0b1020;border:1px dashed rgba(255,255,255,.25);border-radius:12px;padding:12px;overflow:auto;"></pre>
-  <p id="exp" style="display:none;margin:8px 0 0 0;opacity:.8;"></p>
-</div>
-
-<p style="margin-top:16px;">
-  <a href="./index.html" style="color:#7ec8ff;">← 応援ページに戻る</a>
-</p>
-
-<script>
-  // ★ここをあなたのWorkers APIに差し替え
-  const API_ISSUE = "https://kakapo-api.suzukiby039.workers.dev/issue";
-
-  const planEl = document.getElementById("plan");
-  const txEl = document.getElementById("tx");
-  const btn = document.getElementById("btn");
-  const msg = document.getElementById("msg");
-  const out = document.getElementById("out");
-  const exp = document.getElementById("exp");
-
-  function fmtDate(ms){
-    try{
-      const d = new Date(ms);
-      const y = d.getFullYear();
-      const m = String(d.getMonth()+1).padStart(2,"0");
-      const dd = String(d.getDate()).padStart(2,"0");
-      return `${y}-${m}-${dd}`;
-    }catch{ return ""; }
-  }
-
-  btn.onclick = async () => {
-    out.style.display = "none";
-    exp.style.display = "none";
-    out.textContent = "";
-    exp.textContent = "";
-
-    const txId = (txEl.value || "").trim();
-    const plan = planEl.value;
-
-    if (!txId) { msg.textContent = "取引ID / 注文ID を入力してください。"; return; }
-
-    msg.textContent = "発行中…";
-
-    try{
-      const r = await fetch(API_ISSUE, {
-        method: "POST",
-        headers: {"content-type":"application/json"},
-        body: JSON.stringify({ txId, plan })
-      });
-
-      const j = await r.json().catch(()=> ({}));
-      if (!r.ok || !j.ok) {
-        msg.textContent = j.error || "発行に失敗しました。";
-        return;
+    function renderPaypal() {
+      if (window.paypal && paypal.HostedButtons) {
+        paypal.HostedButtons({ hostedButtonId: BTN_1M }).render("#paypal-1m");
+        paypal.HostedButtons({ hostedButtonId: BTN_6M }).render("#paypal-6m");
+      } else {
+        document.getElementById("paypal-1m").innerHTML =
+          '<p style="opacity:0.9;">PayPalボタンの読み込みに失敗しました。広告ブロッカーをOFFにして再読み込みしてください。</p>';
+        document.getElementById("paypal-6m").innerHTML =
+          '<p style="opacity:0.9;">PayPalボタンの読み込みに失敗しました。広告ブロッカーをOFFにして再読み込みしてください。</p>';
       }
-
-      msg.textContent = j.reused ? "以前発行したコードを再表示しました。" : "応援コードを発行しました。";
-      out.style.display = "block";
-      out.textContent = j.publicId;
-
-      if (j.expiresUtc && j.expiresUtc > 0) {
-        exp.style.display = "block";
-        exp.textContent = `期限：${fmtDate(j.expiresUtc)} まで`;
-      }
-    }catch(e){
-      msg.textContent = "通信に失敗しました。時間をおいてお試しください。";
     }
-  };
-</script>
+    renderPaypal();
+  </script>
+
+  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
+
+  <!-- ===== 発行ページ導線 ===== -->
+  <h2>応援コードの発行</h2>
+  <ol style="line-height:1.8;opacity:0.95;margin-top:8px;">
+    <li>PayPalで応援します（上のどちらか）</li>
+    <li>PayPal側で表示される「取引ID（または注文ID）」を控えます</li>
+    <li>発行ページでIDを入力し、<b>応援コード（publicId）</b> を受け取ります</li>
+    <li>アプリを右クリック →「応援コードで認証…」から貼り付けます</li>
+  </ol>
+
+  <p style="margin:10px 0 0 0;">
+    <a href="./issue.html" style="color:#7ec8ff;font-weight:bold;">発行ページへ →</a>
+  </p>
+
+  <div style="background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:10px;padding:12px;margin:12px 0;">
+    <p style="margin:0 0 8px 0;opacity:0.9;">
+      発行される <b>個別の応援コード（publicId）</b> はこんな形です：
+    </p>
+    <pre style="background:#121a2a;color:#d7e3ff;padding:12px;border-radius:8px;overflow:auto;margin:0;">（例）KAKAPO-XXXX-XXXX-XXXX</pre>
+    <p style="margin:8px 0 0 0;opacity:0.75;font-size:13px;line-height:1.6;">
+      ※ 同じ「取引ID/注文ID」なら、何度でも同じコードを再表示できます（紛失対策）。<br>
+      ※ 反映に少し時間がかかる場合があります。数分後にもう一度お試しください。
+    </p>
+  </div>
+
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;opacity:0.92;">
+    <h3 style="margin:0 0 6px 0;font-size:16px;">お願い（トラブル防止）</h3>
+    <p style="margin:0;line-height:1.7;font-size:13px;opacity:0.85;">
+      応援は任意の「お気持ち」です。機能の恒久提供・動作保証・個別サポートを約束するものではありません。<br>
+      （もちろん、できる範囲で改善は続けます！）
+    </p>
+  </div>
+
+  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
+
+  <p style="opacity:0.9;">チャンネルで活動状況をチェックできます：</p>
+  <p>
+    <a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
+      YouTubeチャンネルを見る
+    </a>
+  </p>
 
 </body>
 </html>
