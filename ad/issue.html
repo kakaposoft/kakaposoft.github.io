@@ -3,54 +3,89 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>応援コード 発行</title>
+  <title>応援コード（publicId）発行</title>
 </head>
+
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;">
 
-<h1>応援コード（publicId）の発行</h1>
+  <h1>応援コード（publicId）の発行</h1>
 
-<p style="opacity:.9;line-height:1.7;">
-  PayPal応援後に表示される <b>取引ID（または注文ID）</b> を入力してください。<br>
-  失くした場合も、同じIDを入れれば同じコードを再表示できます。
-</p>
+  <p style="opacity:0.92;line-height:1.7;">
+    PayPal応援後に表示される <b>取引ID（または注文ID）</b> を入力してください。<br>
+    同じIDを入力すると、同じ応援コードを再表示できます（紛失対策）。
+  </p>
 
-<div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
-  <div style="margin-bottom:10px;">
-    <label>プラン</label><br>
-    <select id="plan" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1020;color:#d7e3ff;">
-      <option value="P1M">ライト（300円 / 1か月）</option>
-      <option value="P6M">ロング（1200円 / 6か月）</option>
-    </select>
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px;margin:16px 0;">
+    <h2 style="margin:0 0 10px 0;font-size:18px;">入力</h2>
+
+    <div style="margin-bottom:10px;">
+      <label for="plan" style="opacity:0.9;">プラン</label><br>
+      <select id="plan" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:#0b1020;color:#d7e3ff;">
+        <option value="P1M">ライト（300円 / 1か月）</option>
+        <option value="P6M">ロング（1200円 / 6か月）</option>
+      </select>
+      <div style="margin-top:6px;opacity:0.75;font-size:12.5px;line-height:1.6;">
+        ※ 内容は同じで、期限だけ違います。支払い時に選んだ方を選択してください。
+      </div>
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label for="tx" style="opacity:0.9;">取引ID / 注文ID</label><br>
+      <input id="tx" inputmode="latin" autocomplete="off" spellcheck="false"
+        placeholder="例）1AB23456CD789012E"
+        style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:#0b1020;color:#d7e3ff;">
+      <div style="margin-top:6px;opacity:0.75;font-size:12.5px;line-height:1.6;">
+        ※ PayPalの完了画面やメールで確認できるIDです（コピー推奨）。
+      </div>
+    </div>
+
+    <button id="btn"
+      style="padding:10px 14px;border-radius:12px;border:0;background:#2b5cff;color:white;cursor:pointer;font-weight:bold;">
+      応援コードを表示する
+    </button>
+
+    <button id="btnCopy" disabled
+      style="margin-left:8px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.18);background:#0b1020;color:#d7e3ff;cursor:pointer;">
+      コピー
+    </button>
+
+    <p id="msg" style="margin:10px 0 0 0;opacity:0.92;line-height:1.6;"></p>
+
+    <pre id="out" style="display:none;background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:12px;padding:12px;overflow:auto;margin:12px 0 0 0;font-size:14px;"></pre>
+    <p id="exp" style="display:none;margin:8px 0 0 0;opacity:0.8;"></p>
+
+    <details style="margin-top:12px;opacity:0.85;">
+      <summary style="cursor:pointer;">IDの場所が分からない場合</summary>
+      <div style="margin-top:8px;line-height:1.7;font-size:13px;">
+        ・PayPalの支払い完了画面に表示されることがあります。<br>
+        ・PayPalから届くメール（領収/通知）に「取引ID」や「注文ID」が記載される場合があります。<br>
+        ・見つからない場合は、時間をおいてもう一度確認してください（反映の都合）。
+      </div>
+    </details>
   </div>
 
-  <div>
-    <label>取引ID / 注文ID</label><br>
-    <input id="tx" placeholder="例）1AB23456CD789012E"
-      style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0b1020;color:#d7e3ff;">
+  <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px;margin:16px 0;opacity:0.92;">
+    <h3 style="margin:0 0 6px 0;font-size:16px;">アプリ側での入力方法</h3>
+    <ol style="margin:0;padding-left:18px;line-height:1.8;">
+      <li>アプリを右クリック</li>
+      <li>「応援コードで認証…」を選択</li>
+      <li>ここで表示された <b>publicId</b> を貼り付け</li>
+    </ol>
   </div>
 
-  <button id="btn"
-    style="margin-top:12px;padding:10px 14px;border-radius:12px;border:0;background:#2b5cff;color:white;cursor:pointer;">
-    発行する
-  </button>
-
-  <p id="msg" style="margin:10px 0 0 0;opacity:.9;"></p>
-
-  <pre id="out" style="display:none;background:#0b1020;border:1px dashed rgba(255,255,255,.25);border-radius:12px;padding:12px;overflow:auto;"></pre>
-  <p id="exp" style="display:none;margin:8px 0 0 0;opacity:.8;"></p>
-</div>
-
-<p style="margin-top:16px;">
-  <a href="./index.html" style="color:#7ec8ff;">← 応援ページに戻る</a>
-</p>
+  <p style="margin-top:16px;">
+    <a href="./index.html" style="color:#7ec8ff;font-weight:bold;">← 応援ページに戻る</a>
+  </p>
 
 <script>
-  // ★ここをあなたのWorkers APIに差し替え
+  // ★ここだけあなたのWorkers APIに差し替え
+  // 例: https://kakapo-api.suzukiby039.workers.dev/issue
   const API_ISSUE = "https://kakapo-api.suzukiby039.workers.dev/issue";
 
   const planEl = document.getElementById("plan");
   const txEl = document.getElementById("tx");
   const btn = document.getElementById("btn");
+  const btnCopy = document.getElementById("btnCopy");
   const msg = document.getElementById("msg");
   const out = document.getElementById("out");
   const exp = document.getElementById("exp");
@@ -65,42 +100,107 @@
     }catch{ return ""; }
   }
 
+  function setBusy(b){
+    btn.disabled = b;
+    planEl.disabled = b;
+    txEl.disabled = b;
+    btn.textContent = b ? "発行中…" : "応援コードを表示する";
+  }
+
+  function cleanTxId(s){
+    // 余計な空白・改行を除去（コピペ対策）
+    return (s || "").trim().replace(/\s+/g, "");
+  }
+
+  // クエリで plan を指定できる（任意）
+  // issue.html?plan=P6M のようにすると初期選択が変わる
+  (function initFromQuery(){
+    try{
+      const u = new URL(location.href);
+      const p = (u.searchParams.get("plan") || "").toUpperCase();
+      if (p === "P1M" || p === "P6M") planEl.value = p;
+    }catch{}
+  })();
+
   btn.onclick = async () => {
     out.style.display = "none";
     exp.style.display = "none";
     out.textContent = "";
     exp.textContent = "";
+    btnCopy.disabled = true;
 
-    const txId = (txEl.value || "").trim();
     const plan = planEl.value;
+    const txId = cleanTxId(txEl.value);
 
-    if (!txId) { msg.textContent = "取引ID / 注文ID を入力してください。"; return; }
+    if (!txId) {
+      msg.textContent = "取引ID / 注文ID を入力してください。";
+      return;
+    }
 
-    msg.textContent = "発行中…";
+    msg.textContent = "発行を確認しています…";
+    setBusy(true);
 
     try{
       const r = await fetch(API_ISSUE, {
         method: "POST",
-        headers: {"content-type":"application/json"},
+        headers: { "content-type":"application/json" },
         body: JSON.stringify({ txId, plan })
       });
 
       const j = await r.json().catch(()=> ({}));
-      if (!r.ok || !j.ok) {
-        msg.textContent = j.error || "発行に失敗しました。";
+
+      if (!r.ok || !j || j.ok !== true) {
+        msg.textContent = (j && j.error) ? j.error : "発行に失敗しました。時間をおいてお試しください。";
         return;
       }
 
-      msg.textContent = j.reused ? "以前発行したコードを再表示しました。" : "応援コードを発行しました。";
-      out.style.display = "block";
-      out.textContent = j.publicId;
+      const pid = (j.publicId || "").trim();
+      const reused = !!j.reused;
+      const expiresUtc = Number(j.expiresUtc || 0);
 
-      if (j.expiresUtc && j.expiresUtc > 0) {
+      if (!pid) {
+        msg.textContent = "発行結果の受け取りに失敗しました。";
+        return;
+      }
+
+      msg.textContent = reused
+        ? "以前発行した応援コードを再表示しました。"
+        : "応援コードを発行しました。";
+
+      out.style.display = "block";
+      out.textContent = pid;
+      btnCopy.disabled = false;
+
+      if (expiresUtc > 0) {
         exp.style.display = "block";
-        exp.textContent = `期限：${fmtDate(j.expiresUtc)} まで`;
+        exp.textContent = `期限：${fmtDate(expiresUtc)} まで`;
       }
     }catch(e){
       msg.textContent = "通信に失敗しました。時間をおいてお試しください。";
+    }finally{
+      setBusy(false);
+    }
+  };
+
+  btnCopy.onclick = async () => {
+    const text = (out.textContent || "").trim();
+    if (!text) return;
+    try{
+      await navigator.clipboard.writeText(text);
+      msg.textContent = "コピーしました。アプリに貼り付けてください。";
+    }catch{
+      // clipboardが使えない環境向けフォールバック
+      try{
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        msg.textContent = "コピーしました。アプリに貼り付けてください。";
+      }catch{
+        msg.textContent = "コピーに失敗しました。手動で選択してコピーしてください。";
+      }
     }
   };
 </script>
