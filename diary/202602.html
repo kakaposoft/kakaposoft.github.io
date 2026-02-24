@@ -15,6 +15,7 @@
       --line:#e7ece9;
       --shadow:0 10px 30px rgba(0,0,0,.08);
       --radius:16px;
+      --warn:#8a2a2a;
     }
 
     *{ box-sizing:border-box; }
@@ -116,6 +117,11 @@
       border-left: 4px solid rgba(11,93,42,.55);
     }
 
+    h3{
+      font-size: 16px;
+      margin: 18px 0 8px;
+    }
+
     p{ margin: 12px 0; }
 
     ul{
@@ -143,6 +149,12 @@
       font-size: 13px;
     }
 
+    .note.warn{
+      border-color: rgba(138,42,42,.25);
+      background: #fff7f7;
+      color: #6f2a2a;
+    }
+
     .cta{
       display:flex;
       flex-wrap: wrap;
@@ -166,6 +178,81 @@
     .btn:hover{
       background: rgba(11,93,42,.12);
       transform: translateY(-1px);
+    }
+
+    .btn.primary{
+      background: rgba(11,93,42,.12);
+      border-color: rgba(11,93,42,.40);
+    }
+
+    /* --- screenshot figure --- */
+    .shot{
+      margin: 14px 0 10px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfcfb;
+    }
+    .shot img{
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display:block;
+    }
+    .muted{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    /* --- feature highlight --- */
+    .hl{
+      margin: 14px 0;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,93,42,.18);
+      background: rgba(11,93,42,.05);
+    }
+    .hl b{ color:#12311f; }
+    .tagrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+    .tag{
+      display:inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,93,42,.22);
+      background: rgba(255,255,255,.6);
+      font-size: 12px;
+      color:#214033;
+    }
+
+    /* --- FAQ --- */
+    .faq{
+      margin: 10px 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .faq details{
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+    }
+    .faq details:first-child{ border-top:0; }
+    .faq summary{
+      cursor:pointer;
+      font-weight: 800;
+      color:#20362b;
+      outline:none;
+    }
+    .faq .a{
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     aside{
@@ -301,67 +388,125 @@
             オンラインサービスに頼らず、自分の環境で、安全に、確実に処理できる。
             その安心感が、制作の集中力を守ると思っています。
           </p>
-<!-- ===== 続き：セールスポイント ===== -->
 
-<h2>セールスポイント</h2>
-<figure class="shot">
-  <img
-    src="/ad/image/2026-02-13%20231032.png"
-    alt="Kakapo Vision Viewer のUIスクリーンショット"
-    loading="lazy"
-  >
-  <figcaption class="muted">実際の画面（UIの雰囲気）</figcaption>
-</figure>
+          <!-- ===== 続き：セールスポイント ===== -->
 
-<h3>可愛い × テクノロジー</h3>
-<p>
-Kakapo Vision Viewer のUIは、「可愛いけど邪魔にならない」を狙って設計しています。<br>
-派手すぎず、でも無機質すぎない。日常に溶け込む“ちょうどよさ”を大事にしました。
-</p>
+          <h2>セールスポイント</h2>
 
-<p>
-老若男女、どんなシーンでも違和感なく使えるように調整しています。
-たとえば――
-</p>
-<ul>
-  <li><strong>子どもの教育環境</strong>：余計な刺激を抑え、迷いにくい導線</li>
-  <li><strong>ビジネスシーン</strong>：見た目が浮かない落ち着いたトーン</li>
-  <li><strong>くつろぎの休日</strong>：操作のストレスを減らし、視聴に集中できる</li>
-</ul>
+          <figure class="shot">
+            <img
+              src="/ad/image/2026-02-13%20231032.png"
+              alt="Kakapo Vision Viewer のUIスクリーンショット"
+              loading="lazy"
+            >
+            <figcaption class="muted">実際の画面（UIの雰囲気）</figcaption>
+          </figure>
 
-<p>
-また、広告を表示する場合でも、表示内容がTPOから外れないよう配慮します。<br>
-「使っていて不快にならない」「見せたくない人の前でも安心」を基本にしています。
-</p>
+          <h3>可愛い × テクノロジー</h3>
+          <p>
+            Kakapo Vision Viewer のUIは、「可愛いけど邪魔にならない」を狙って設計しています。<br>
+            派手すぎず、でも無機質すぎない。日常に溶け込む“ちょうどよさ”を大事にしました。
+          </p>
 
-<div class="note">
-  <strong>補足：</strong><br>
-  将来的に、広告を“強め”にする代わりに機能を拡充する<strong>追加モード</strong>を用意する構想があります。<br>
-  ただし、子どもが誤って有効化しないように、簡単なクイズ等を解いた場合のみ解除できる方式など、
-  運用面も含めて慎重に検討します。
-</div>
+          <p>
+            老若男女、どんなシーンでも違和感なく使えるように調整しています。
+            たとえば――
+          </p>
+          <ul>
+            <li><strong>子どもの教育環境</strong>：余計な刺激を抑え、迷いにくい導線</li>
+            <li><strong>ビジネスシーン</strong>：見た目が浮かない落ち着いたトーン</li>
+            <li><strong>くつろぎの休日</strong>：操作のストレスを減らし、視聴に集中できる</li>
+          </ul>
 
-<h3>キーボードを使わない操作性</h3>
-<p>
-動画プレイヤーは、見たい瞬間にサッと触れて、サッと戻れるのが理想だと思っています。<br>
-Kakapo Vision Viewer は、できる限り<strong>マウスだけで完結</strong>する操作性を重視しています。
-</p>
+          <p>
+            また、広告を表示する場合でも、表示内容がTPOから外れないよう配慮します。<br>
+            「使っていて不快にならない」「見せたくない人の前でも安心」を基本にしています。
+          </p>
 
-<ul>
-  <li><strong>直感的なクリック操作</strong>で再生・停止・シークができる</li>
-  <li>細かな設定も、画面上で迷いにくい導線にまとめる</li>
-  <li>キーボードショートカットに頼らず、初見でも触れる</li>
-</ul>
+          <div class="note">
+            <strong>補足：</strong><br>
+            将来的に、広告を“強め”にする代わりに機能を拡充する<strong>追加モード</strong>を用意する構想があります。<br>
+            ただし、子どもが誤って有効化しないように、簡単なクイズ等を解いた場合のみ解除できる方式など、
+            運用面も含めて慎重に検討します。
+          </div>
 
-<p>
-もちろん、慣れてきた人向けにショートカットを用意する余地はありますが、<br>
-まずは「誰でも、すぐ使える」を最優先にしています。
-</p>
+          <h3>キーボードを使わない操作性</h3>
+          <p>
+            動画プレイヤーは、見たい瞬間にサッと触れて、サッと戻れるのが理想だと思っています。<br>
+            Kakapo Vision Viewer は、できる限り<strong>マウスだけで完結</strong>する操作性を重視しています。
+          </p>
 
-<!-- ===== 続きはここに足していける ===== -->
-<!-- 例：AI高画質のこだわり、軽量性、ローカル処理、プレイリスト、広告の設計思想など -->
+          <ul>
+            <li><strong>直感的なクリック操作</strong>で再生・停止・シークができる</li>
+            <li>細かな設定も、画面上で迷いにくい導線にまとめる</li>
+            <li>キーボードショートカットに頼らず、初見でも触れる</li>
+          </ul>
 
+          <p>
+            もちろん、慣れてきた人向けにショートカットを用意する余地はありますが、<br>
+            まずは「誰でも、すぐ使える」を最優先にしています。
+          </p>
 
+          <!-- ★追加：AI高画質化の強み（あなたの要件を反映） -->
+          <h3>AI高画質化：PCの性能を最大限に活かす設計</h3>
+          <div class="hl">
+            <p style="margin:0;">
+              Kakapo Vision Viewer のAI高画質化は、<b>クラウドではなくローカル処理</b>を前提にしています。<br>
+              そのため、処理の上限は「プラン」や「回数」ではなく、<b>お使いのPC性能</b>で決まります。
+            </p>
+            <div class="tagrow" aria-label="AI高画質化の特徴">
+              <span class="tag">ローカル処理</span>
+              <span class="tag">素材を外へ出さない</span>
+              <span class="tag">性能に合わせて伸びる</span>
+              <span class="tag">作業用途に強い</span>
+            </div>
+          </div>
+
+          <ul>
+            <li><strong>制限ではなく、PC性能で決まる</strong>：環境が強いほど、より重い処理も現実的になります</li>
+            <li><strong>サイズ拡大を“縛らない”思想</strong>：必要に応じて高解像度の確認・補正を追求できます</li>
+            <li><strong>安心</strong>：素材が外部に送信されず、手元の環境で完結します</li>
+          </ul>
+
+          <div class="note warn">
+            <strong>注意：</strong><br>
+            AI高画質化は負荷が高い処理です。高倍率や高解像度ほど、GPU/VRAM/メモリの影響が大きくなります。<br>
+            「どこまで行けるか」はPC性能次第なので、まずは小さめの設定から試すのがおすすめです。
+          </div>
+
+          <!-- ★追加：推奨PC（ソフト内アフィと整合しやすい文章） -->
+          <h3>推奨環境（高性能GPUを活かしたい人へ）</h3>
+          <p>
+            AI処理を快適に回したい場合は、GPU（特にVRAM）に余裕があると体験が変わります。<br>
+            具体的な目安やおすすめ構成は、別ページにまとめています。
+          </p>
+          <div class="cta" style="border-top:0; padding-top:0;">
+            <a class="btn" href="/ad/ad.html">推奨環境・おすすめを見る</a>
+          </div>
+          <p class="muted" style="margin-top:8px;">
+            ※上記ページにはアフィリエイトリンクが含まれる場合があります。サイト運営・開発継続の助けになります。
+          </p>
+
+          <!-- ★追加：FAQで不安を先に潰す -->
+          <h2>よくある質問</h2>
+          <div class="faq">
+            <details>
+              <summary>Q. 素材は外部に送信されますか？</summary>
+              <div class="a">A. 基本方針として、可能な限りローカル環境で完結する設計にしています（外部送信を前提としません）。</div>
+            </details>
+            <details>
+              <summary>Q. AI高画質化の「上限」はありますか？</summary>
+              <div class="a">A. ソフト側で「小さな上限」を設ける思想ではありません。実際の上限はPC性能（GPU/VRAM/メモリ等）で決まります。</div>
+            </details>
+            <details>
+              <summary>Q. 応援や広告について教えてください</summary>
+              <div class="a">A. 個人開発のため、サイトでは最小限の広告やおすすめ紹介を行う場合があります。リンク利用や支援は開発継続の励みになります。</div>
+            </details>
+            <details>
+              <summary>Q. 著作物の扱いは？</summary>
+              <div class="a">A. ご自身が正当な権利を持つコンテンツ、または利用許可を得た素材での利用を想定しています。</div>
+            </details>
+          </div>
 
           <h2>これから</h2>
           <p>
@@ -369,17 +514,19 @@ Kakapo Vision Viewer は、できる限り<strong>マウスだけで完結</stro
             「安心・軽量・実用性」を軸に、長く使えるツールを目指します。
           </p>
 
-
+          <!-- ★追加：応援を“重くなく”事実で書く（サーバー費じゃなく人生コストのほう） -->
+          <p class="note">
+            本ソフトは個人で開発・改善を続けています。<br>
+            開発・検証・改善には時間と労力がかかりますが、できる限り長く更新を続けたいと思っています。<br>
+            広告リンクの利用や支援は、開発継続の大きな励みになります。
+          </p>
 
           <div class="cta">
-            <a class="btn" href="https://github.com/kakaposoft/kakaposoft.github.io/releases/download/kakapovisionplayer/Kakapo.Vision.Player.exe">最新版をダウンロード</a>
+            <a class="btn primary" href="https://github.com/kakaposoft/kakaposoft.github.io/releases/download/kakapovisionplayer/Kakapo.Vision.Player.exe">最新版をダウンロード</a>
             <a class="btn" href="/ad/ad.html">推奨環境・おすすめを見る</a>
             <a class="btn" href="/ad/privacy.html">プライバシーポリシー</a>
           </div>
 
-          <p class="note">
-            広告リンクの利用や支援は、開発継続の大きな励みになります。
-          </p>
         </div>
       </article>
 
@@ -387,9 +534,7 @@ Kakapo Vision Viewer は、できる限り<strong>マウスだけで完結</stro
       <aside class="card">
         <div class="side-title">サイトメニュー</div>
         <a class="side-link" href="/index.html">トップ</a>
-        <a class="side-link" href="/ad/ad.html">ダウンロード</a>
-        <a class="side-link" href="/ad/ad.html">推奨環境・おすすめ</a>
-    
+        <a class="side-link" href="/ad/ad.html">ダウンロード / 推奨環境</a>
         <a class="side-link" href="/ad/privacy.html">プライバシーポリシー</a>
         <a class="side-link" href="/ad/terms.html">利用規約</a>
         <a class="side-link" href="/ad/contact.html">お問い合わせ</a>
@@ -400,6 +545,12 @@ Kakapo Vision Viewer は、できる限り<strong>マウスだけで完結</stro
           不要な通信をしない、ローカル処理、実用性。<br>
           そこに全振りしたプレイヤーです。
         </p>
+
+        <div class="note" style="margin-top:14px;">
+          <strong>開発の方針</strong><br>
+          制限で縛るのではなく、<strong>PCの性能を活かす設計</strong>。<br>
+          余計な常駐や派手な演出より、日常で使える軽さを優先します。
+        </div>
       </aside>
 
     </div>
@@ -410,7 +561,9 @@ Kakapo Vision Viewer は、できる限り<strong>マウスだけで完結</stro
         <a href="/ad/terms.html">利用規約</a> |
         <a href="/ad/contact.html">お問い合わせ</a>
       </div>
-      <div style="margin-top:8px;"><a href="/index.html">© KakapoSoft</div>
+      <div style="margin-top:8px;">
+        <a href="/index.html">© KakapoSoft</a>
+      </div>
     </footer>
 
   </div>
