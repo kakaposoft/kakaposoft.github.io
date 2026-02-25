@@ -5,13 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kakapo Vision Player 応援ページ</title>
 
-<!-- ✅ ここをあなたの「REST App の Client ID」に置き換え -->
-<!-- Hosted Buttons の BA... ではなく、通常の Client ID を推奨 -->
-
-<script 
-  src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
-</script>
-  
+<!-- ✅ hosted-buttons を外して、paypal.Buttons が使えるSDKにする -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&currency=JPY&disable-funding=venmo"></script>
 </head>
 
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;line-height:1.7;">
@@ -112,10 +107,6 @@
 </p>
 
 <script>
-/**
- * ✅ ここをあなたの Worker に置き換え
- * 例: https://kakapo-api.example.workers.dev
- */
 const API_BASE = "https://kakapo-api.suzukiby039.workers.dev";
 
 function showMsg(html) {
@@ -123,7 +114,6 @@ function showMsg(html) {
   el.style.display = "block";
   el.innerHTML = html;
 }
-
 function hideMsg() {
   const el = document.getElementById("msg");
   el.style.display = "none";
@@ -157,7 +147,6 @@ function showOrderId(orderId, plan){
     }
   };
 
-  // 発行ページへ plan も渡す（入力ミス防止）
   goLink.href = `./issue.html?orderId=${encodeURIComponent(orderId)}&plan=${encodeURIComponent(plan)}`;
 }
 
@@ -185,7 +174,6 @@ function mountButton(selector, plan) {
 
       try {
         const orderId = await createOrderOnWorker(plan);
-        // ここで orderId が確定（ユーザーが控えられる）
         showOrderId(orderId, plan);
         return orderId;
       } catch (e) {
@@ -196,7 +184,6 @@ function mountButton(selector, plan) {
     },
 
     onApprove: async (data) => {
-      // data.orderID が orderId
       const orderId = data.orderID;
       showOrderId(orderId, plan);
       showMsg("応援ありがとうございます！<br>上に表示された <b>オーダーID</b> を発行ページで入力してください。");
@@ -210,12 +197,10 @@ function mountButton(selector, plan) {
 }
 
 (function boot(){
-  // PayPal SDKが読み込めてない時の保険
   if (!window.paypal || !paypal.Buttons) {
     showMsg("PayPalボタンの読み込みに失敗しました。<br>広告ブロッカー等を一時OFFにして再読み込みしてください。");
     return;
   }
-
   mountButton("#pp-1m", "P1M");
   mountButton("#pp-6m", "P6M");
 })();
