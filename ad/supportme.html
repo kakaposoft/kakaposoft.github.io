@@ -7,7 +7,11 @@
 
 <!-- ✅ ここをあなたの「REST App の Client ID」に置き換え -->
 <!-- Hosted Buttons の BA... ではなく、通常の Client ID を推奨 -->
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_REST_CLIENT_ID&currency=JPY&disable-funding=venmo"></script>
+
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY">
+</script>
+  
 </head>
 
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;line-height:1.7;">
@@ -112,7 +116,7 @@
  * ✅ ここをあなたの Worker に置き換え
  * 例: https://kakapo-api.example.workers.dev
  */
-const API_BASE = "https://YOUR_WORKER_DOMAIN";
+const API_BASE = "https://kakapo-api.suzukiby039.workers.dev";
 
 function showMsg(html) {
   const el = document.getElementById("msg");
