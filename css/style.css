@@ -416,7 +416,20 @@ blockquote {
   .cta-bar{ gap: 8px; }
   .btn{ width: 100%; text-align: center; }
 }
+.button-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
 
+.button.booth{
+  background:#ff6b6b;
+}
+
+.button.booth:hover{
+  background:#e65a5a;
+}
   
 }
 
