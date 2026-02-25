@@ -23,7 +23,7 @@
   <h2 style="margin:0 0 8px 0;font-size:18px;">まずここだけ確認</h2>
   <ul style="margin:0;padding-left:18px;opacity:0.95;">
     <li><b>PayPalで応援した後</b>に使えます（先に入力しても発行できません）</li>
-    <li>使うのは <b>PayPalの「取引ID（Transaction ID）」または「注文ID（Order ID）」</b> です</li>
+    <li>使うのは <b>PayPalの「注文ID（Order ID）」</b> です（取引IDでは発行できません）</li>
     <li>反映まで <b>数分かかる</b> ことがあります（時間をおいて再試行してください）</li>
   </ul>
 </div>
@@ -46,18 +46,49 @@
 
 <!-- ===== 入力フォーム ===== -->
 <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px;margin-bottom:12px;">
-  <h2 style="margin:0 0 10px 0;font-size:18px;">取引ID / 注文ID を入力</h2>
+  <h2 style="margin:0 0 10px 0;font-size:18px;">注文ID（Order ID）を入力</h2>
 
   <label style="display:block;font-size:13px;opacity:0.9;margin-bottom:6px;">
-    PayPalの取引ID（または注文ID）
+    PayPalの注文ID（Order ID）
   </label>
 
-  <input id="txId"
+  <input id="orderId"
     type="text"
     inputmode="latin"
     autocomplete="off"
     placeholder="例: 9AB12345CD6789012 / 5HG12345AB678901C"
     style="width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.25);background:#0b1020;color:white;font-size:16px;">
+
+  <!-- プラン（P1M/P6M） -->
+  <div style="margin-top:12px;">
+    <label style="display:block;font-size:13px;opacity:0.9;margin-bottom:6px;">
+      プラン
+    </label>
+    <select id="plan"
+      style="width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.25);background:#0b1020;color:white;font-size:16px;">
+      <option value="P1M">ライト（1か月） 300円</option>
+      <option value="P6M">ロング（6か月） 1200円</option>
+    </select>
+    <div style="font-size:12px;opacity:0.75;margin-top:8px;">
+      ※ 支払い金額と一致しない場合は発行できません。
+    </div>
+  </div>
+
+  <!-- machineHash（任意） -->
+  <div style="margin-top:12px;">
+    <label style="display:block;font-size:13px;opacity:0.9;margin-bottom:6px;">
+      machineHash（任意：アプリからコピペ）
+    </label>
+    <input id="machineHash"
+      type="text"
+      inputmode="latin"
+      autocomplete="off"
+      placeholder="（任意）例: 3a5f...（空でもOK）"
+      style="width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.25);background:#0b1020;color:white;font-size:16px;">
+    <div style="font-size:12px;opacity:0.75;margin-top:8px;">
+      ※ 未入力でも発行できます（あなたのWorkerは任意でOKの設計）。
+    </div>
+  </div>
 
   <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
     <button id="btnIssue"
@@ -84,20 +115,27 @@
 <!-- ===== 結果表示（コピー動線） ===== -->
 <div id="resultBox"
   style="display:none;background:#0b1020;border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px;margin-top:14px;">
-  <h3 style="margin:0 0 8px 0;">発行された応援コード</h3>
+  <h3 style="margin:0 0 8px 0;">発行された応援コード（license）</h3>
 
-  <pre id="publicId"
-    style="background:#121a2a;color:#d7e3ff;padding:12px;border-radius:10px;overflow:auto;margin:0;font-size:16px;"></pre>
+  <textarea id="license"
+    rows="6"
+    style="width:100%;box-sizing:border-box;background:#121a2a;color:#d7e3ff;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);margin:0;font-size:14px;resize:vertical;"></textarea>
 
   <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
     <button id="btnCopy"
       style="padding:12px 14px;border-radius:10px;border:0;background:#7ee081;color:#07111f;font-weight:bold;cursor:pointer;">
-      応援コードをコピー
+      応援コード（license）をコピー
     </button>
     <a href="./index.html"
       style="display:inline-block;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.25);color:white;text-decoration:none;font-weight:bold;">
       応援ページへ戻る
     </a>
+  </div>
+
+  <div style="margin-top:10px;font-size:13px;opacity:0.85;">
+    <div><b>plan:</b> <span id="planOut"></span></div>
+    <div><b>expires:</b> <span id="expOut"></span></div>
+    <div style="opacity:0.85;"><b>publicId:</b> <span id="publicIdOut"></span></div>
   </div>
 
   <p style="font-size:13px;opacity:0.8;margin-top:10px;">
@@ -114,18 +152,17 @@
 <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:18px 0;opacity:0.95;">
   <h3 style="margin:0 0 8px 0;font-size:16px;">よくある原因（ほとんどここです）</h3>
   <ul style="margin:0;padding-left:18px;opacity:0.9;">
-    <li>取引IDではなく「メールアドレス」や「名前」を入れている</li>
+    <li>注文IDではなく「取引ID」を入れている（このページは注文ID専用です）</li>
     <li>コピペ時に余計な空白が入っている（本ページで自動除去します）</li>
     <li>応援直後で、まだ反映されていない（数分待って再試行）</li>
-    <li>取引IDが間違っている（1文字違いでも不可）</li>
+    <li>注文IDが間違っている（1文字違いでも不可）</li>
+    <li>プラン選択が支払った内容と違う（300円/1200円の選択ミス）</li>
   </ul>
 </div>
 
 <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
 
-<p style="opacity:0.9;">
-動画・活動状況：
-</p>
+<p style="opacity:0.9;">動画・活動状況：</p>
 <p>
 <a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
 YouTubeチャンネルを見る
@@ -133,23 +170,44 @@ YouTubeチャンネルを見る
 </p>
 
 <script>
-/*
-  ここがあなたの発行API呼び出し部分に相当します。
-  - 取引ID/注文IDを送って publicId を返す
-  - 同じIDなら同じ publicId を再表示
-  - 未反映や不正IDならエラー
-  ★ 実装はあなたのサーバー/Cloudflare Workers/その他に合わせて差し替え
-*/
-async function issuePublicId(txId, agreed) {
-  // 例: fetch("/api/issue", {method:"POST", headers:{...}, body: JSON.stringify({txId, agreed})})
-  // return { ok:true, publicId:"KAKAPO-XXXX-XXXX-XXXX" }
-  // return { ok:false, code:"NOT_FOUND", message:"まだ反映されていないか、IDが違います" }
+/**
+ * ★ここをあなたのWorkerに合わせて変更
+ * 例: https://kakapo-api.yourname.workers.dev
+ */
+const API_BASE = "https://kakapo-api.suzukiby039.workers.dev";
 
-  // ---- デモ（必ず差し替え） ----
-  await new Promise(r => setTimeout(r, 250));
-  if (!agreed) return { ok:false, code:"NO_AGREE", message:"同意が必要です。" };
-  if (txId.length < 8) return { ok:false, code:"BAD_ID", message:"IDが短すぎます。PayPalの取引ID/注文IDを入力してください。" };
-  return { ok:true, publicId:"KAKAPO-XXXX-XXXX-XXXX" };
+/**
+ * Worker (/paypal/capture-and-issue) を叩いて license を返してもらう
+ * @returns {Promise<{ok:boolean, license?:string, publicId?:string, plan?:string, expiresUtc?:number, captureId?:string, reused?:boolean, error?:string}>}
+ */
+async function issueLicenseByOrderId(orderId, plan, machineHash) {
+  const r = await fetch(`${API_BASE}/paypal/capture-and-issue`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      orderId,
+      plan,
+      machineHash: machineHash || ""
+    })
+  });
+
+  const j = await r.json().catch(() => null);
+
+  if (!r.ok || !j) {
+    const err = j?.error || `HTTP ${r.status}`;
+    return { ok: false, error: err };
+  }
+  if (!j.ok) return { ok: false, error: j.error || "発行できませんでした。" };
+
+  return {
+    ok: true,
+    license: j.license || "",
+    publicId: j.publicId || "",
+    plan: j.plan || plan,
+    expiresUtc: Number(j.expiresUtc || 0),
+    captureId: j.captureId || "",
+    reused: !!j.reused
+  };
 }
 
 function showMsg(html) {
@@ -165,7 +223,6 @@ function hideMsg() {
 }
 
 function normalizeId(s) {
-  // 空白・全角スペース・改行などを除去して、見た目のミスを減らす
   return (s || "")
     .trim()
     .replace(/\u3000/g, " ")
@@ -173,14 +230,31 @@ function normalizeId(s) {
     .replace(/[^0-9A-Za-z_-]/g, "");
 }
 
-function setResult(publicId) {
+function setResult(license, plan, expiresUtc, publicId) {
   document.getElementById("resultBox").style.display = "block";
-  document.getElementById("publicId").textContent = publicId;
+  document.getElementById("license").value = license || "";
+  document.getElementById("planOut").textContent = plan || "";
+  document.getElementById("expOut").textContent = expiresUtc ? new Date(expiresUtc).toLocaleString("ja-JP") : "";
+  document.getElementById("publicIdOut").textContent = publicId || "";
 }
 
 function clearResult() {
   document.getElementById("resultBox").style.display = "none";
-  document.getElementById("publicId").textContent = "";
+  document.getElementById("license").value = "";
+  document.getElementById("planOut").textContent = "";
+  document.getElementById("expOut").textContent = "";
+  document.getElementById("publicIdOut").textContent = "";
+}
+
+function setBusy(busy){
+  const btn = document.getElementById("btnIssue");
+  btn.disabled = busy;
+  btn.style.opacity = busy ? "0.6" : "1";
+}
+
+function getQuery(name){
+  const u = new URL(location.href);
+  return u.searchParams.get(name) || "";
 }
 
 async function onIssue() {
@@ -193,40 +267,66 @@ async function onIssue() {
     return;
   }
 
-  const input = document.getElementById("txId");
-  const txId = normalizeId(input.value);
-  input.value = txId;
+  const orderInput = document.getElementById("orderId");
+  const orderId = normalizeId(orderInput.value);
+  orderInput.value = orderId;
 
-  if (!txId) {
-    showMsg("PayPalの <b>取引ID（または注文ID）</b> を入力してください。");
+  const plan = (document.getElementById("plan").value || "").toString().trim().toUpperCase();
+  const machineHash = (document.getElementById("machineHash").value || "").toString().trim();
+
+  if (!orderId) {
+    showMsg("PayPalの <b>注文ID（Order ID）</b> を入力してください。");
+    return;
+  }
+  if (orderId.length < 10) {
+    showMsg("注文IDが短すぎるようです。PayPalの <b>注文ID（Order ID）</b> を入力してください。");
+    return;
+  }
+  if (plan !== "P1M" && plan !== "P6M") {
+    showMsg("プランが不正です。");
     return;
   }
 
-  document.getElementById("btnIssue").disabled = true;
-  document.getElementById("btnIssue").style.opacity = "0.6";
+  setBusy(true);
 
   try {
-    const res = await issuePublicId(txId, true);
+    const res = await issueLicenseByOrderId(orderId, plan, machineHash);
 
-    if (res && res.ok && res.publicId) {
-      setResult(res.publicId);
-      showMsg("発行できました。下の <b>コピー</b> ボタンでアプリに貼り付けてください。");
+    if (res.ok && res.license) {
+      setResult(res.license, res.plan, res.expiresUtc, res.publicId);
+
+      // 成功メッセージ（責めない＋次の行動）
+      showMsg(
+        (res.reused ? "再表示しました（同じ注文ID）。" : "発行できました。") +
+        " 下の <b>コピー</b> ボタンでアプリに貼り付けてください。"
+      );
+
+      // URLに残す（再読込しても入力が残る）
+      const u = new URL(location.href);
+      u.searchParams.set("orderId", orderId);
+      u.searchParams.set("plan", res.plan || plan);
+      history.replaceState(null, "", u.toString());
+
       return;
     }
 
-    // エラー時（言い方：責めない＋次の行動を明示）
-    if (res && res.code === "NOT_FOUND") {
-      showMsg("見つかりませんでした。<br>・応援直後は反映まで数分かかる場合があります（少し待って再試行）<br>・IDが1文字でも違うと発行できません（コピペ推奨）");
-    } else if (res && res.code === "PENDING") {
-      showMsg("まだ反映されていない可能性があります。数分待ってから、もう一度お試しください。");
+    // 失敗時：具体的に次の行動を提示
+    const err = (res.error || "").toString();
+    if (err.includes("支払いが未完了") || err.includes("未完了")) {
+      showMsg("まだ支払いが完了していない可能性があります。PayPalの画面で完了を確認し、少し待って再試行してください。");
+    } else if (err.includes("金額不一致")) {
+      showMsg("プランが支払った内容と一致しない可能性があります。<br>・300円なら「ライト」<br>・1200円なら「ロング」<br>を選んで再試行してください。");
+    } else if (err.includes("無効化") || err.includes("返金")) {
+      showMsg("この取引は無効化されています（返金/停止）。");
     } else {
-      showMsg("発行できませんでした。IDを再確認し、時間をおいて再試行してください。");
+      showMsg("発行できませんでした。<br>・注文IDが正しいか<br>・応援直後なら数分待って再試行<br>をお試しください。");
     }
+
   } catch (e) {
+    console.error(e);
     showMsg("通信エラーが発生しました。時間をおいて再試行してください。");
   } finally {
-    document.getElementById("btnIssue").disabled = false;
-    document.getElementById("btnIssue").style.opacity = "1";
+    setBusy(false);
   }
 }
 
@@ -235,10 +335,10 @@ async function onPaste() {
   try {
     const text = await navigator.clipboard.readText();
     if (text) {
-      document.getElementById("txId").value = normalizeId(text);
+      document.getElementById("orderId").value = normalizeId(text);
       showMsg("貼り付けました。<b>発行</b> を押してください。");
     } else {
-      showMsg("クリップボードが空のようです。PayPalの取引ID/注文IDをコピーしてからお試しください。");
+      showMsg("クリップボードが空のようです。PayPalの注文ID（Order ID）をコピーしてからお試しください。");
     }
   } catch {
     showMsg("このブラウザでは自動貼り付けができない場合があります。手動で貼り付けてください。");
@@ -247,18 +347,18 @@ async function onPaste() {
 
 function onClear() {
   hideMsg();
-  document.getElementById("txId").value = "";
+  document.getElementById("orderId").value = "";
+  document.getElementById("machineHash").value = "";
   clearResult();
 }
 
 async function onCopy() {
-  const text = document.getElementById("publicId").textContent || "";
+  const text = document.getElementById("license").value || "";
   if (!text) return;
   try {
     await navigator.clipboard.writeText(text);
     showMsg("コピーしました。アプリに貼り付けてください。");
   } catch {
-    // フォールバック（選択してコピー）
     showMsg("自動コピーできませんでした。表示されたコードを選択してコピーしてください。");
   }
 }
@@ -269,9 +369,18 @@ document.getElementById("btnClear").addEventListener("click", onClear);
 document.getElementById("btnCopy").addEventListener("click", onCopy);
 
 // Enterキーでも発行
-document.getElementById("txId").addEventListener("keydown", (e) => {
+document.getElementById("orderId").addEventListener("keydown", (e) => {
   if (e.key === "Enter") onIssue();
 });
+
+// クエリから自動入力（supportページ→issueページ）
+(function initFromQuery(){
+  const qOrderId = normalizeId(getQuery("orderId"));
+  const qPlan = (getQuery("plan") || "").toString().trim().toUpperCase();
+
+  if (qOrderId) document.getElementById("orderId").value = qOrderId;
+  if (qPlan === "P1M" || qPlan === "P6M") document.getElementById("plan").value = qPlan;
+})();
 </script>
 
 </body>
