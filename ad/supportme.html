@@ -57,6 +57,12 @@
 </div>
 
 <h2>応援方法（PayPal）</h2>
+
+<!-- ✅ 追加：安心メッセージ -->
+<p style="text-align:center;color:#c8cedd;font-size:14px;margin:8px 0 12px 0;">
+  PayPal により安全な決済が処理されます
+</p>
+
 <p style="font-size:14px;opacity:0.9;">
   同意チェックを入れると決済へ進めます。
 </p>
@@ -80,14 +86,19 @@
 <!-- エラー/案内表示 -->
 <div id="msg" style="display:none;background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;margin:12px 0;opacity:0.95;"></div>
 
-<div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;margin-bottom:14px;">
-  <h3>ライト（1か月） 300円</h3>
-  <div id="pp-1m"></div>
+<!-- ✅ PayPal規約同意の読みやすさ対策：白カードで囲む -->
+<div style="background:#ffffff;color:#111;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.18);padding:14px;margin-bottom:14px;">
+  <div style="background:transparent;border:1px solid #e6e8ee;border-radius:12px;padding:14px;">
+    <h3 style="margin:0 0 10px 0;color:#111;">ライト（1か月） 300円</h3>
+    <div id="pp-1m"></div>
+  </div>
 </div>
 
-<div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
-  <h3>ロング（6か月） 1200円</h3>
-  <div id="pp-6m"></div>
+<div style="background:#ffffff;color:#111;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.18);padding:14px;">
+  <div style="background:transparent;border:1px solid #e6e8ee;border-radius:12px;padding:14px;">
+    <h3 style="margin:0 0 10px 0;color:#111;">ロング（6か月） 1200円</h3>
+    <div id="pp-6m"></div>
+  </div>
 </div>
 
 <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
