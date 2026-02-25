@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
-<<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kakapo Vision Player 応援ページ</title>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAAbsSyJAfzyEjp8su9MK95BUzip6ZRVg6IE6zVkGrUMv6YoOcOj0RAo2M-JZmLvcst8hk_14zvvzIOIj8&components=hosted-buttons&disable-funding=venmo&currency=JPY"></script>
+<!-- ★Standard Checkout: buttons を使う（hosted-buttons は使わない） -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=JPY&disable-funding=venmo"></script>
 </head>
 
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;line-height:1.7;">
@@ -23,7 +22,7 @@
 
 <p style="opacity:0.92;">
 もし「いいね」と思っていただけたら、開発の応援をしていただけると嬉しいです。<br>
-応援後、発行ページで「応援コード」を受け取れます。
+応援後、発行ページで「応援コード（ライセンス）」を受け取れます。
 </p>
 
 <!-- ===== 特典説明（誤解を防ぐ） ===== -->
@@ -59,74 +58,131 @@
 
 <h2>応援方法（PayPal）</h2>
 <p style="font-size:14px;opacity:0.9;">
-同意チェックを入れるとボタンが有効になります。
+同意チェックを入れると決済へ進めます。
 </p>
 
+<!-- orderId 表示 -->
+<div id="orderInfo" style="display:none;background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:10px;padding:12px;margin:16px 0;">
+  <div style="font-weight:bold;margin-bottom:6px;">オーダーID（控えてください）</div>
+  <div id="orderIdText" style="font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;word-break:break-all;"></div>
+  <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+    <button id="copyOrderBtn" style="padding:8px 10px;border-radius:8px;border:0;cursor:pointer;">コピー</button>
+    <a id="goIssueLink" href="./issue.html" style="color:#7ec8ff;font-weight:bold;text-decoration:none;align-self:center;">
+      発行ページへ進む →
+    </a>
+  </div>
+  <div style="font-size:12px;opacity:0.8;margin-top:8px;">
+    ※ 通信やタイミングで、反映まで少し時間がかかる場合があります。<br>
+    ※ 同じオーダーIDで再発行できます。
+  </div>
+</div>
+
 <div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;margin-bottom:14px;">
-<h3>ライト（1か月） 300円</h3>
-<div id="paypal-1m"></div>
+  <h3>ライト（1か月） 300円</h3>
+  <div id="pp-1m"></div>
 </div>
 
 <div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;">
-<h3>ロング（6か月） 1200円</h3>
-<div id="paypal-6m"></div>
+  <h3>ロング（6か月） 1200円</h3>
+  <div id="pp-6m"></div>
 </div>
-
-<script>
-const BTN_1M = "【1か月のHostedButtonId】";
-const BTN_6M = "【6か月のHostedButtonId】";
-
-function renderPaypal() {
-  if (window.paypal && paypal.HostedButtons) {
-    paypal.HostedButtons({ hostedButtonId: BTN_1M }).render("#paypal-1m");
-    paypal.HostedButtons({ hostedButtonId: BTN_6M }).render("#paypal-6m");
-  }
-}
-renderPaypal();
-
-// 同意チェックガード
-function guard(containerId){
-  const box = document.getElementById("agreeCheck");
-  const el = document.getElementById(containerId);
-  el.addEventListener("click", function(e){
-    if(!box.checked){
-      e.preventDefault();
-      e.stopPropagation();
-      alert("支援前に重要事項への同意が必要です。");
-    }
-  }, true);
-}
-
-guard("paypal-1m");
-guard("paypal-6m");
-</script>
 
 <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
 
 <h2>応援コードの受け取り（簡単3ステップ）</h2>
 <ol>
 <li>PayPalで応援する</li>
-<li>表示される「取引ID」を控える</li>
+<li>表示される「オーダーID」を控える</li>
 <li><a href="./issue.html" style="color:#7ec8ff;font-weight:bold;">発行ページ</a>で入力する</li>
 </ol>
 
-<div style="background:#0b1020;border:1px dashed rgba(255,255,255,0.25);border-radius:10px;padding:12px;margin-top:12px;">
-<p style="font-size:13px;opacity:0.85;">
-※ 反映まで数分かかる場合があります。<br>
-※ 同じ取引IDで再発行できます。
-</p>
-</div>
-
-<hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:24px 0;">
-
-<p style="opacity:0.9;">
-活動状況はこちら：
-</p>
+<p style="opacity:0.9;">活動状況はこちら：</p>
 <p>
 <a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
 YouTubeチャンネルを見る
 </a>
 </p>
+
+<script>
+/**
+ * ★ここを自分の Worker に合わせて変更
+ * 例: https://kakapo-api.yourname.workers.dev
+ */
+const API_BASE = "https://YOUR_WORKER_DOMAIN";
+
+function requireAgree() {
+  const box = document.getElementById("agreeCheck");
+  if (!box || !box.checked) {
+    alert("支援前に重要事項への同意が必要です。");
+    return false;
+  }
+  return true;
+}
+
+function showOrderId(orderId, plan){
+  const wrap = document.getElementById("orderInfo");
+  const text = document.getElementById("orderIdText");
+  const copyBtn = document.getElementById("copyOrderBtn");
+  const goLink = document.getElementById("goIssueLink");
+
+  text.textContent = orderId;
+  wrap.style.display = "block";
+
+  copyBtn.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(orderId);
+      alert("オーダーIDをコピーしました。");
+    } catch {
+      prompt("コピーできない場合は手動でコピーしてください:", orderId);
+    }
+  };
+
+  // 発行ページへ plan も渡す（ユーザーの入力ミス防止）
+  goLink.href = `./issue.html?orderId=${encodeURIComponent(orderId)}&plan=${encodeURIComponent(plan)}`;
+}
+
+// PayPalボタン（Standard Checkout）
+function mountButton(selector, plan) {
+  paypal.Buttons({
+    style: { layout: "vertical" },
+
+    createOrder: async () => {
+      if (!requireAgree()) throw new Error("not agreed");
+
+      const r = await fetch(`${API_BASE}/paypal/create-order`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ plan })
+      });
+
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok || !j.orderId) {
+        console.error("create-order failed:", r.status, j);
+        throw new Error(j.error || "create-order failed");
+      }
+
+      // ここで orderId が確定
+      showOrderId(j.orderId, plan);
+      return j.orderId;
+    },
+
+    onApprove: async (data) => {
+      // data.orderID が orderId
+      const orderId = data.orderID;
+      showOrderId(orderId, plan);
+      alert("応援ありがとうございます！\nオーダーIDを発行ページで入力してください。");
+    },
+
+    onError: (err) => {
+      console.error(err);
+      alert("PayPal処理でエラーが発生しました。時間をおいて再試行してください。");
+    }
+  }).render(selector);
+}
+
+mountButton("#pp-1m", "P1M");
+mountButton("#pp-6m", "P6M");
+</script>
 
 </body>
 </html>
