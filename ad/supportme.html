@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kakapo Vision Player 応援ページ</title>
 
-<!-- ★Standard Checkout: buttons を使う（hosted-buttons は使わない） -->
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=JPY&disable-funding=venmo"></script>
+<!-- ✅ ここをあなたの「REST App の Client ID」に置き換え -->
+<!-- Hosted Buttons の BA... ではなく、通常の Client ID を推奨 -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_REST_CLIENT_ID&currency=JPY&disable-funding=venmo"></script>
 </head>
 
 <body style="font-family:sans-serif;background:#0f1420;color:white;max-width:720px;margin:24px auto;padding:0 16px;line-height:1.7;">
@@ -15,50 +16,50 @@
 
 <!-- ===== 最重要：誤解防止 ===== -->
 <div style="background:#1a2238;border:2px solid #ffb74d;border-radius:10px;padding:14px;margin-bottom:18px;">
-<b style="font-size:16px;">※ これは「購入」ではありません</b><br>
-本ページはソフトの販売ではなく、<b>開発への任意の応援（寄付）</b>です。<br>
-アプリの基本機能は、応援なしでも利用できます。
+  <b style="font-size:16px;">※ これは「購入」ではありません</b><br>
+  本ページはソフトの販売ではなく、<b>開発への任意の応援（寄付）</b>です。<br>
+  アプリの基本機能は、応援なしでも利用できます。
 </div>
 
 <p style="opacity:0.92;">
-もし「いいね」と思っていただけたら、開発の応援をしていただけると嬉しいです。<br>
-応援後、発行ページで「応援コード（ライセンス）」を受け取れます。
+  もし「いいね」と思っていただけたら、開発の応援をしていただけると嬉しいです。<br>
+  応援後、発行ページで「応援コード（ライセンス）」を受け取れます。
 </p>
 
 <!-- ===== 特典説明（誤解を防ぐ） ===== -->
 <div style="background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px;margin:16px 0;">
-<h2 style="margin-top:0;">応援すると</h2>
-<ul style="padding-left:18px;">
-<li>アプリ内の「応援モード（お礼機能）」が利用できます</li>
-<li>内容はプランによらず同じで、期間のみ異なります</li>
-</ul>
-<p style="font-size:13px;opacity:0.8;margin:8px 0 0 0;">
-※ 特典はお礼機能であり、購入商品ではありません。
-</p>
+  <h2 style="margin-top:0;">応援すると</h2>
+  <ul style="padding-left:18px;">
+    <li>アプリ内の「応援モード（お礼機能）」が利用できます</li>
+    <li>内容はプランによらず同じで、期間のみ異なります</li>
+  </ul>
+  <p style="font-size:13px;opacity:0.8;margin:8px 0 0 0;">
+    ※ 特典はお礼機能であり、購入商品ではありません。
+  </p>
 </div>
 
 <!-- ===== 同意ブロック（最重要） ===== -->
 <div style="background:#1a2238;border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:14px;margin:18px 0;">
-<h3 style="margin-top:0;">重要事項（必ずご確認ください）</h3>
+  <h3 style="margin-top:0;">重要事項（必ずご確認ください）</h3>
 
-<p style="font-size:13px;opacity:0.9;">
-・本支援は商品の購入ではなく、任意の寄付です。<br>
-・返金、補償、サポート、個別対応は行っておりません。<br>
-・応援特典はお礼として提供するもので、すべての環境での動作を保証するものではありません。<br>
-・設定および利用は利用者ご自身の責任で行ってください。<br>
-・環境差異、操作方法、知識不足、通信状況等により利用できない場合でも対応は行いません。<br>
-・本ソフトは個人開発です。
-</p>
+  <p style="font-size:13px;opacity:0.9;">
+    ・本支援は商品の購入ではなく、任意の寄付です。<br>
+    ・返金、補償、サポート、個別対応は行っておりません。<br>
+    ・応援特典はお礼として提供するもので、すべての環境での動作を保証するものではありません。<br>
+    ・設定および利用は利用者ご自身の責任で行ってください。<br>
+    ・環境差異、操作方法、知識不足、通信状況等により利用できない場合でも対応は行いません。<br>
+    ・本ソフトは個人開発です。
+  </p>
 
-<label style="display:flex;gap:8px;margin-top:10px;font-weight:bold;">
-<input type="checkbox" id="agreeCheck">
-<span>上記内容を理解し、同意します</span>
-</label>
+  <label style="display:flex;gap:8px;margin-top:10px;font-weight:bold;">
+    <input type="checkbox" id="agreeCheck">
+    <span>上記内容を理解し、同意します</span>
+  </label>
 </div>
 
 <h2>応援方法（PayPal）</h2>
 <p style="font-size:14px;opacity:0.9;">
-同意チェックを入れると決済へ進めます。
+  同意チェックを入れると決済へ進めます。
 </p>
 
 <!-- orderId 表示 -->
@@ -72,10 +73,13 @@
     </a>
   </div>
   <div style="font-size:12px;opacity:0.8;margin-top:8px;">
-    ※ 通信やタイミングで、反映まで少し時間がかかる場合があります。<br>
+    ※ 反映まで数分かかる場合があります。<br>
     ※ 同じオーダーIDで再発行できます。
   </div>
 </div>
+
+<!-- エラー/案内表示 -->
+<div id="msg" style="display:none;background:#121a2a;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;margin:12px 0;opacity:0.95;"></div>
 
 <div style="background:#121a2a;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;margin-bottom:14px;">
   <h3>ライト（1か月） 300円</h3>
@@ -91,21 +95,36 @@
 
 <h2>応援コードの受け取り（簡単3ステップ）</h2>
 <ol>
-<li>PayPalで応援する</li>
-<li>表示される「オーダーID」を控える</li>
-<li><a href="./issue.html" style="color:#7ec8ff;font-weight:bold;">発行ページ</a>で入力する</li>
+  <li>PayPalで応援する</li>
+  <li>表示される「オーダーID」を控える</li>
+  <li><a href="./issue.html" style="color:#7ec8ff;font-weight:bold;">発行ページ</a>で入力する</li>
 </ol>
 
 <p style="opacity:0.9;">活動状況はこちら：</p>
 <p>
-<a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
-YouTubeチャンネルを見る
-</a>
+  <a href="https://www.youtube.com/@sekiseikakapo" target="_blank" rel="noopener" style="color:#7ec8ff">
+    YouTubeチャンネルを見る
+  </a>
 </p>
 
 <script>
+/**
+ * ✅ ここをあなたの Worker に置き換え
+ * 例: https://kakapo-api.example.workers.dev
+ */
+const API_BASE = "https://YOUR_WORKER_DOMAIN";
 
-const API_BASE = "https://kakapo-api.suzukiby039.workers.dev";
+function showMsg(html) {
+  const el = document.getElementById("msg");
+  el.style.display = "block";
+  el.innerHTML = html;
+}
+
+function hideMsg() {
+  const el = document.getElementById("msg");
+  el.style.display = "none";
+  el.innerHTML = "";
+}
 
 function requireAgree() {
   const box = document.getElementById("agreeCheck");
@@ -134,51 +153,68 @@ function showOrderId(orderId, plan){
     }
   };
 
-  // 発行ページへ plan も渡す（ユーザーの入力ミス防止）
+  // 発行ページへ plan も渡す（入力ミス防止）
   goLink.href = `./issue.html?orderId=${encodeURIComponent(orderId)}&plan=${encodeURIComponent(plan)}`;
 }
 
-// PayPalボタン（Standard Checkout）
+async function createOrderOnWorker(plan){
+  const r = await fetch(`${API_BASE}/paypal/create-order`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ plan })
+  });
+
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || !j.ok || !j.orderId) {
+    throw new Error(j.error || `create-order failed (HTTP ${r.status})`);
+  }
+  return j.orderId;
+}
+
 function mountButton(selector, plan) {
   paypal.Buttons({
     style: { layout: "vertical" },
 
     createOrder: async () => {
+      hideMsg();
       if (!requireAgree()) throw new Error("not agreed");
 
-      const r = await fetch(`${API_BASE}/paypal/create-order`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ plan })
-      });
-
-      const j = await r.json().catch(() => ({}));
-      if (!r.ok || !j.ok || !j.orderId) {
-        console.error("create-order failed:", r.status, j);
-        throw new Error(j.error || "create-order failed");
+      try {
+        const orderId = await createOrderOnWorker(plan);
+        // ここで orderId が確定（ユーザーが控えられる）
+        showOrderId(orderId, plan);
+        return orderId;
+      } catch (e) {
+        console.error(e);
+        showMsg("オーダー作成に失敗しました。<br>時間をおいて再試行してください。");
+        throw e;
       }
-
-      // ここで orderId が確定
-      showOrderId(j.orderId, plan);
-      return j.orderId;
     },
 
     onApprove: async (data) => {
       // data.orderID が orderId
       const orderId = data.orderID;
       showOrderId(orderId, plan);
-      alert("応援ありがとうございます！\nオーダーIDを発行ページで入力してください。");
+      showMsg("応援ありがとうございます！<br>上に表示された <b>オーダーID</b> を発行ページで入力してください。");
     },
 
     onError: (err) => {
       console.error(err);
-      alert("PayPal処理でエラーが発生しました。時間をおいて再試行してください。");
+      showMsg("PayPal処理でエラーが発生しました。<br>時間をおいて再試行してください。");
     }
   }).render(selector);
 }
 
-mountButton("#pp-1m", "P1M");
-mountButton("#pp-6m", "P6M");
+(function boot(){
+  // PayPal SDKが読み込めてない時の保険
+  if (!window.paypal || !paypal.Buttons) {
+    showMsg("PayPalボタンの読み込みに失敗しました。<br>広告ブロッカー等を一時OFFにして再読み込みしてください。");
+    return;
+  }
+
+  mountButton("#pp-1m", "P1M");
+  mountButton("#pp-6m", "P6M");
+})();
 </script>
 
 </body>
