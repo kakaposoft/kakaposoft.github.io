@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>自作将棋『戦姫将棋』で、AIに「未知の一手」を考えてもらう｜KakapoSoft 制作ノート</title><meta name="description" content="進化・特殊な駒・戦姫が登場する自作将棋。専用 CPU と AI の対局を通じて、ルール理解と判断、画面操作を分けて考えます。">
+<meta name="theme-color" content="#183a30">
+<link rel="canonical" href="https://kakaposoft.github.io/diary/senki-shogi-ai.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自作将棋『戦姫将棋』で、AIに「未知の一手」を考えてもらう｜KakapoSoft 制作ノート"><meta property="og:description" content="進化・特殊な駒・戦姫が登場する自作将棋。専用 CPU と AI の対局を通じて、ルール理解と判断、画面操作を分けて考えます。">
+<meta property="og:url" content="https://kakaposoft.github.io/diary/senki-shogi-ai.html"><meta property="og:image" content="https://kakaposoft.github.io/ad/image/icon2_128.png">
+<link rel="icon" href="/ad/image/icon2_128.png" type="image/png"><link rel="stylesheet" href="/css/site.css">
+
+</head><body>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="/" aria-label="KakapoSoft ホーム"><span class="brand-mark" aria-hidden="true">k</span><span>KakapoSoft<small>SOFTWARE &amp; CREATIVE NOTES</small></span></a>
+<nav class="site-nav" aria-label="メインナビゲーション"><a href="/products/">製品</a><a href="/diary/" aria-current="page">制作ノート</a><a href="/about.html">KakapoSoftについて</a><a class="nav-cta" href="/products/kvp.html#download">無料で使う <span aria-hidden="true">→</span></a></nav>
+</div></header>
+<main id="main"><section class="page-intro"><div class="container"><nav class="breadcrumbs" aria-label="パンくず"><a href="/">ホーム</a><span aria-hidden="true">/</span><a href="/diary/">制作ノート</a><span aria-hidden="true">/</span><span>ゲーム開発</span></nav>
+<p class="eyebrow">ゲーム開発 / Creative note</p><span class="status dev">開発中・実験</span>
+<h1 style="margin-top:20px">自作将棋『戦姫将棋』で、AIに「未知の一手」を考えてもらう</h1><div class="article-meta"><span>著者：KakapoSoft</span><span>制作記録 · 2026.10.20 公開</span></div></div></section>
+<div class="container article-layout"><article class="article-body"><div class="note"><p>開発中の取り組みを紹介しています。完成済み・販売中の製品として案内するものではありません。</p></div><p>将棋の駒に進化があり、普通の将棋にはない駒や「戦姫」が登場したら、どんな対局になるのか。Unity/C#で制作している『戦姫将棋』では、そうした独自ルールを持つゲームを作っています。</p><p>盤面に新しい要素を増やすと、遊びの可能性と一緒に、作り手が考えることも増えます。駒を動かせるようにするだけでは、手応えのある対局にはなりません。相手になるCPUをどう作るか。そして、そのルールを初めて学ぶ相手が、盤面から何を読み取れるのか。今回は、開発中のゲームをGPT Astraに操作してもらった対局実験を入口に、この二つを紹介します。</p><h2 id="section-1">独自ルールは、駒の説明を増やすだけでは済まない</h2><p>『戦姫将棋』には、進化、特殊な駒、戦姫という独自システムがあります。これらを加えると、現在の駒の動きだけでなく、変化した後にどんな手が生まれるかも、判断に関わってきます。</p><p>例えば、目の前の駒を取る手と、先の展開につながる進化を選ぶ手があるとします。前者はすぐに得をしたと分かります。一方、後者の価値は、その後の盤面や相手の応手によって変わります。選択肢を実装することと、それぞれの価値をCPUに判断させることは、別の課題です。</p><p>しかも、強い駒を作ればそれだけで面白くなるわけでもありません。相手が使いこなせずに失ってしまえば、その能力を見る機会が減ります。逆に、同じ行動ばかりが有利なら、いろいろな駒がいても対局の印象は似てしまいます。独自ルールを作る面白さは、対局相手の設計にもつながっています。</p><h2 id="section-2">「弱すぎるとつまらない」を、CPUづくりの出発点に</h2><p>開発中に大事だと感じたのは、相手がある程度強いからこそ、考えて勝つ楽しさが生まれるということです。簡単に勝てるだけでは、せっかく用意した進化や特殊な駒を工夫して使う必要がなくなります。</p><p>CPUの判断を考えるときも、「王手をした」「駒を取った」という目の前の成果だけでは足りません。その直後に大切な駒を失わないか、攻める形を作れているか、守ってばかりになっていないか。実際の対局の中で確かめたい点がいくつもあります。</p><p>ここで区別したいのが、ルール通りに動くことと、対戦して手応えがあることです。合法手を選べるCPUでも、プレイヤーが毎回同じ方法で勝てるなら、遊びとしての課題は残ります。『戦姫将棋』の専用CPUも、ゲームを遊ぶ相手として考えながら作っています。</p><h2 id="section-3">ルールを説明したAstraと、ゲーム専用CPUを対局させる</h2><p>そこで試したのが、GPT Astraに実際の盤面を見せ、ゲームを操作してもらう実験です。相手は『戦姫将棋』用に実装した専用CPU。Astraには、対局前にゲームのルールを説明しました。</p><p>試したかったのは、説明を読まずに当てずっぽうで遊べるかどうかではありません。独自ルールを知ったうえで、目の前の局面から次の一手を組み立てられるか、という点です。</p><p>盤面には、普通の将棋にはない判断が必要です。特殊な駒の利きを読み、駒の価値を考え、相手の狙いを推測し、進化などの選択肢も含めて手を決める。さらに、その判断をゲーム画面での操作につなげるところまで任せました。</p><p>対局では、良い判断をする場面も、読みを外す場面もありました。読み違えた後にも局面を見直し、次の手を考え直しながら続けていきます。その様子は、最終的な勝敗だけでは分からない、この実験の見どころです。</p><h2 id="section-4">対局を見るときは、「どこで間違えたか」を分ける</h2><p>こうした実験を見直すときは、少なくとも次の四つを分けると、内容が分かりやすくなります。</p><ol><li>駒の位置や盤面を正しく読み取れたか。</li><li>特殊な駒を含め、ルールと合法手を理解できたか。</li><li>候補の中から、局面に合う手を選べたか。</li><li>考えた手を、画面上で正しく操作できたか。</li></ol><p>盤面の読み違いと、作戦上の判断ミスでは、直すべき場所が違います。画面操作で失敗した手を、そのまま思考能力の評価にしてしまうのも避けたいところです。</p><p>一回の対局だけで、AI全体の強さやゲームの完成度が決まるわけではありません。それでも、自分で作ったルールを別の相手に渡すと、作り手だけでは見えにくかった判断の過程が表に出てきます。</p><p>『戦姫将棋』は開発中です。独自の駒を増やすこと、その駒が生きる対局を作ること、初めて遊ぶ相手に伝わるようにすること。その三つを行き来する制作の一例として、この対局実験を紹介しました。</p>
+<section aria-labelledby="related-videos-title"><h2 id="related-videos-title">関連する公開動画</h2><h3><a href="https://www.youtube.com/watch?v=a0TOhD9kqH4">【GPT Astra】定石も棋譜も存在しない自作将棋でGPTアストラは戦えるのか？【AI vs CPU】</a></h3><p class="small">公開日：<time datetime="2026-09-27">2026/09/27</time> · YouTube</p><p>独自の進化・特殊駒・戦姫のある将棋で、ルールを事前に説明した GPT Astra が画面を確認・操作し、専用 CPU と対局する実験です。説明欄では、読み違い後に局面を見直す過程にも触れています。</p><p class="small">関連動画の紹介は、公開タイトル・説明欄に基づいています。</p></section>
+<div class="link-panel"><p><strong>ほかの制作ノートも読む</strong>ソフトウェアと制作の背景を記録しています。</p><a class="btn secondary" href="/diary/">一覧へ戻る</a></div>
+</article><aside class="article-sidebar" aria-label="記事の目次"><p>この記事の内容</p><ol><li><a href="#section-1">独自ルールは、駒の説明を増やすだけでは済まない</a></li><li><a href="#section-2">「弱すぎるとつまらない」を、CPUづくりの出発点に</a></li><li><a href="#section-3">ルールを説明したAstraと、ゲーム専用CPUを対局させる</a></li><li><a href="#section-4">対局を見るときは、「どこで間違えたか」を分ける</a></li></ol><a class="text-link" href="/diary/">制作ノート一覧 →</a></aside></div></main>
+<footer class="site-footer"><div class="container">
+<div class="footer-main"><div><a class="brand" href="/">KakapoSoft</a><p>「ありそうでない」を、少しずつ形に。</p></div>
+<nav class="footer-links" aria-label="フッターナビゲーション">
+<a href="/products/">製品</a><a href="/diary/">制作ノート</a><a href="/about.html">運営について</a>
+<a href="/products/kvp.html#requirements">動作環境</a><a href="/ad/supportme.html">任意の開発支援</a><a href="/ad/contact.html">お問い合わせ</a>
+<a href="/ad/privacy.html">プライバシーポリシー</a><a href="/ad/terms.html">カカポビューアの利用規約</a></nav></div>
+<div class="footer-bottom"><span>© KakapoSoft</span><span>個人開発のソフトウェアと、ものづくりの記録。</span></div></div></footer>
+</body></html>
