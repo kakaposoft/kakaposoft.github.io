@@ -1,64 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kakapo Vision Player — V2アップデート情報</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Yu Gothic UI", "Meiryo", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 22px 18px 36px; background: #141a16; color: #eef3ec; font-size: 23px; line-height: 1.65; overflow-wrap: anywhere; }
+    main { max-width: 640px; margin: auto; }
+    .eyebrow { margin: 0; color: #a9d5a1; font-size: 18px; letter-spacing: .05em; }
+    h1 { margin: 10px 0 8px; font-size: 35px; line-height: 1.35; }
+    .date { color: #adb9ad; font-size: 18px; margin: 0 0 24px; }
+    section { border-top: 1px solid #354636; padding: 20px 0 5px; }
+    h2 { margin: 0 0 10px; font-size: 26px; color: #c9edaf; line-height: 1.45; }
+    p { margin: 0 0 18px; }
+    ul, ol { margin: 0 0 20px; padding-left: 1.3em; }
+    li { margin-bottom: 10px; }
+    .note { border: 1px solid #4b6742; border-radius: 12px; background: #202c20; padding: 16px; }
+    .small { font-size: 19px; color: #c2cec0; }
+    a { color: #bdeea6; text-underline-offset: .2em; }
+    a:focus-visible { outline: 3px solid #e0fdb5; outline-offset: 4px; }
+    code { font-family: Consolas, monospace; font-size: .9em; }
+    footer { border-top: 1px solid #354636; padding-top: 20px; margin-top: 16px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">KAKAPO VISION PLAYER</p>
+    <h1>V2アップデート情報</h1>
+    <p class="date">バージョン 2.0 ／ 2026年10月21日</p>
+    <p><strong>V1から動作を大幅に軽量化し、カーネル関連の不具合を修正しました。</strong></p>
+    <p>画像・動画のAI高画質や、日常の操作も改善しています。</p>
+  </header>
 
-<div class="box">
-<h2>動作環境</h2>
+  <section>
+    <h2>動画の読み込み・切り替えを改善</h2>
+    <p>標準の再生エンジンを更新。ファイルを開くときの待ち時間を減らし、シークや音声同期も見直しました。</p>
+    <ul>
+      <li>シークバーで移動先のサムネイルを確認</li>
+      <li>前回の再生位置を記録して再開</li>
+      <li>音声・字幕トラックの切り替え</li>
+    </ul>
+  </section>
 
-<div class="kv">
+  <section>
+    <h2>AI高画質を内蔵</h2>
+    <p>Real-ESRGANの学習済みモデルをEXEへ内蔵。モデルを別途ダウンロードせずに使えます。</p>
+    <ul>
+      <li>画像は2倍に拡大。ライセンス認証済みの方は4倍も選択可能</li>
+      <li>動画にもAI補正を適用。動画の出力サイズは元の解像度を維持</li>
+      <li>中クリックで開く画像の個別ウィンドウにも対応</li>
+    </ul>
+    <p class="small">AIの処理速度と効果は、PCと素材によって変わります。GPUを推奨します。DVD ISO・YouTubeは動画AI補正の対象外です。</p>
+  </section>
 
-<div class="row">
-<div class="key">OS</div>
-<div class="val">
-Windows 10 / Windows 11（64bit）
-</div>
-</div>
+  <section>
+    <h2>毎日の使いやすさを改善</h2>
+    <ul>
+      <li>画像の並び順に「更新日順」を追加</li>
+      <li>中クリックの個別画像ウィンドウを修正</li>
+      <li>YouTubeの操作バーとログイン情報の保存を改善</li>
+      <li>睡眠用の音量処理で、音量差や急な大きな音を抑制</li>
+    </ul>
+  </section>
 
-<div class="row">
-<div class="key">CPU</div>
-<div class="val">
-x64対応プロセッサ（マルチコア推奨）
-</div>
-</div>
+  <section>
+    <h2>DVD ISOを再生するには</h2>
+    <p>配布版は、DVD用の部品を利用者が追加する方式です。追加後はメニュー・タイトル・チャプターなどを操作できます。映像上の右クリックも修正しました。</p>
+    <div class="note">
+      <p><strong>ZIP同封の「DVD再生するには.txt」をお読みください。</strong></p>
+      <ol>
+        <li>アプリを完全に終了する</li>
+        <li>VideoLAN公式からVLC 3.0.24のWindows 64bit ZIP版を取得する</li>
+        <li><code>libvlc.dll</code>・<code>libvlccore.dll</code>・<code>plugins</code>フォルダー全体を、プレイヤーのEXEと同じフォルダーへ置く</li>
+        <li>プレイヤーを再起動してDVD ISOを開く</li>
+      </ol>
+      <p><a href="https://download.videolan.org/pub/videolan/vlc/3.0.24/win64/vlc-3.0.24-win64.zip" target="_blank" rel="noopener noreferrer">VLC 3.0.24・64bit ZIPを取得</a></p>
+      <p class="small">DLL1個だけでは動きません。32bit版・ARM64版や異なるバージョンを混ぜないでください。取得したVLC部品には各ライセンスが適用されます。</p>
+    </div>
+  </section>
 
-<div class="row">
-<div class="key">メモリ</div>
-<div class="val">
-8GB以上推奨（AI機能使用時は16GB以上推奨）
-</div>
-</div>
+  <section>
+    <h2>通常の再生はEXEひとつで</h2>
+    <p>通常の動画・音声・画像用の部品とAIモデルは内蔵しています。初回起動時に必要な部品を自動展開します。</p>
+    <p class="small">Windows 10 / 11の64bit版、Microsoft Edge WebView2 Runtimeが必要です。起動確認・認証・YouTube等にはインターネット接続を使用します。展開用に2GB以上の空き容量を目安に確保してください。</p>
+  </section>
 
-<div class="row">
-<div class="key">GPU</div>
-<div class="val">
-DirectX 11対応GPU（AI処理時はGPU搭載環境推奨）
-</div>
-</div>
-
-<div class="row">
-<div class="key">ストレージ</div>
-<div class="val">
-500MB以上の空き容量（モデル・キャッシュにより増加する場合があります）
-</div>
-</div>
-
-<div class="row">
-<div class="key">ネット接続</div>
-<div class="val">
-起動時のバージョン確認・更新確認のためインターネット接続が必要です<br>
-（動画・画像・AI処理データの送信は行いません）
-</div>
-</div>
-
-<div class="row">
-<div class="key">ランタイム</div>
-<div class="val">
-Microsoft WebView2 Runtime（未インストールの場合は自動取得または手動インストール）
-</div>
-</div>
-
-</div>
-
-<p class="smallnote" style="margin-top:12px;">
-※AI機能の処理速度は、GPU性能・VRAM容量・モデルサイズにより大きく変動します。<br>
-※一部の環境（GPUドライバ、セキュリティソフト、特殊なコーデック環境等）では正常に動作しない場合があります。
-</p>
-
-</div>
+  <footer>
+    <p>入手先・公開状況は公式サイトをご確認ください。</p>
+    <p><a href="https://kakaposoft.github.io/" target="_blank" rel="noopener noreferrer">KakapoSoft 公式サイト</a></p>
+  </footer>
+</main>
+</body>
+</html>
