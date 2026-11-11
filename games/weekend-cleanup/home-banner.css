@@ -1,0 +1,14 @@
+/* Weekend Cleanup: isolated home banner styles. */
+.weekend-feature{padding:0 0 48px}
+.weekend-banner{display:grid;grid-template-columns:1.1fr 1fr;overflow:hidden;border-radius:20px;text-decoration:none;background:#123f45;color:#fff}
+.weekend-banner-art{min-width:0;position:relative;overflow:hidden;min-height:310px}
+.weekend-banner-art img{position:absolute;width:200%;height:200%;max-width:none;right:0;bottom:0;object-fit:fill}
+.weekend-banner-copy{padding:38px 35px;background:#123f45}
+.weekend-banner-label{display:inline-block;color:#bdede2;border:1px solid #a7d2c16b;padding:3px 10px;border-radius:3px;font-size:11px;letter-spacing:.08em;margin-bottom:16px}
+.weekend-banner h2{font-family:"Yu Mincho",serif;color:#fff8e8;font-size:clamp(27px,3vw,39px);letter-spacing:.06em;margin:0 0 3px}
+.weekend-banner-en{font:10px/1.8 system-ui,sans-serif;letter-spacing:.2em;color:#a6cfc6;margin:0 0 18px}
+.weekend-banner-tagline{color:#fff;font-size:17px;font-weight:700;margin:0 0 8px}
+.weekend-banner-detail{font-size:13px;color:#d3e5df;margin:0}
+.weekend-banner-cta{display:inline-flex;gap:24px;margin-top:23px;padding:10px 19px;background:#e3eed9;color:#153f40;border-radius:4px;font-size:13px;font-weight:700}
+.weekend-banner:hover .weekend-banner-cta{background:#fff6d9}
+@media(max-width:760px){.weekend-feature{padding-bottom:30px}.weekend-banner{grid-template-columns:1fr;border-radius:18px}.weekend-banner-art{aspect-ratio:16/9;min-height:0}.weekend-banner-copy{padding:26px 24px}.weekend-banner h2{font-size:30px}.weekend-banner-tagline{font-size:16px}}
