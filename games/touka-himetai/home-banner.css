@@ -1,0 +1,14 @@
+/* Scoped card for the existing KakapoSoft homepage. */
+.touka-feature{padding:0 0 48px}
+.touka-banner{display:grid;grid-template-columns:1.1fr 1fr;overflow:hidden;border-radius:20px;background:#202637;color:#f8f6f1;text-decoration:none}
+.touka-banner-art{display:flex;align-items:center;min-width:0;background:#171b29}
+.touka-banner-art img{width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}
+.touka-banner-copy{padding:36px 35px;border-left:3px solid #a63548}
+.touka-banner-label{display:inline-block;font-size:.875rem;line-height:1.6;color:#eeb6a1;margin:0 0 14px}
+.touka-banner h2{font-family:"Yu Mincho",serif;font-size:clamp(2rem,3vw,2.6rem);color:#f8f6f1;letter-spacing:.08em;margin:0 0 13px}
+.touka-banner-tagline{font-weight:700;font-size:1.0625rem;margin:0 0 8px;color:#fff}
+.touka-banner-detail{font-size:1rem;color:#c8ceda;margin:0}
+.touka-banner-cta{display:inline-block;margin-top:24px;padding:10px 19px;background:#f6e3d9;color:#321e28;border-radius:4px;font-size:.875rem;font-weight:700}
+.touka-banner:hover .touka-banner-cta{background:#fff}
+.touka-banner:focus-visible{outline:3px solid #a63548;outline-offset:5px}
+@media(max-width:760px){.touka-feature{padding-bottom:30px}.touka-banner{grid-template-columns:1fr;border-radius:18px}.touka-banner-art{padding:22px 0}.touka-banner-copy{padding:26px 24px;border-left:0;border-top:3px solid #a63548}.touka-banner h2{font-size:2rem}}
