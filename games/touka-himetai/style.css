@@ -51,8 +51,10 @@ h3{font-size:1.35rem}
 .movie-section{background:var(--red);padding:68px 0;position:relative}
 .movie-grid{display:grid;grid-template-columns:1fr 1.04fr;gap:80px;align-items:center}
 .movie-section .eyebrow{color:#ffd7c7}
-.movie-note{color:#ffe5df}
-.button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;background:var(--ink);color:#5a1a28;padding:12px 24px;font-size:.9375rem;font-weight:700;text-decoration:none;margin-top:24px;border:1px solid var(--ink);transition:background .2s}
+.movie-player{display:block;width:100%;height:auto;aspect-ratio:16/9;min-height:200px;border:0;background:#171b29;margin-top:30px}
+.movie-links{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;margin-top:24px}
+.movie-channel{font-size:.875rem;font-weight:700}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;background:var(--ink);color:#5a1a28;padding:12px 24px;font-size:.9375rem;font-weight:700;text-decoration:none;border:1px solid var(--ink);transition:background .2s}
 .button:hover{background:#ffe0d1}
 .button:focus-visible{outline-color:white}
 .game-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:38px}
